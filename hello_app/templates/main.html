@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/CSS/style.css">
+    <title>TOUUUUUUUR</title>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">TOUUUUUUUR</a>
+        
+        <nav class="nav">
+            <a href="#" class="active">Главная</a>
+            <a href="#">Концерты</a>
+            <a href="#">Артисты</a>
+            <a href="#">Города</a>
+            <a href="#">Билеты</a>
+        </nav>
+
+        <div class="header-actions">
+            <select class="city-select">
+                <option value="">Выберите город</option>
+                <option value="moscow">Москва</option>
+                <option value="spb">Санкт-Петербург</option>
+                <option value="ekb">Екатеринбург</option>
+                <option value="kazan">Казань</option>
+                <option value="novosibirsk">Новосибирск</option>
+            </select>
+            <button class="login-button">Войти</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <h1>Лучшие концерты в твоем городе</h1>
+            <p>Билеты на выступления популярных артистов, фестивали и музыкальные события</p>
+            <button class="cta-button">Купить билеты</button>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Ближайшие концерты</h2>
+                <a href="#" class="view-all">Все концерты</a>
+            </div>
+            
+            <div class="concerts-list">
+                <div class="concert-item">
+                    <div class="concert-date">
+                        <div class="date-day">15</div>
+                        <div class="date-month">Дек</div>
+                    </div>
+                    <div class="concert-info">
+                        <div class="concert-title">The Weeknd - After Hours Tour</div>
+                        <div class="concert-location">Санкт-Петербург, Ледовый дворец</div>
+                        <div class="concert-time">19:00</div>
+                    </div>
+                    <div class="concert-price">от 2 500 ₽</div>
+                    <button class="buy-button">Купить билет</button>
+                </div>
+                
+                <div class="concert-item">
+                    <div class="concert-date">
+                        <div class="date-day">20</div>
+                        <div class="date-month">Дек</div>
+                    </div>
+                    <div class="concert-info">
+                        <div class="concert-title">Billie Eilish - Happier Than Ever</div>
+                        <div class="concert-location">Москва, ВТБ Арена</div>
+                        <div class="concert-time">20:00</div>
+                    </div>
+                    <div class="concert-price">от 3 000 ₽</div>
+                    <button class="buy-button">Купить билет</button>
+                </div>
+                
+                <div class="concert-item">
+                    <div class="concert-date">
+                        <div class="date-day">25</div>
+                        <div class="date-month">Дек</div>
+                    </div>
+                    <div class="concert-info">
+                        <div class="concert-title">Imagine Dragons - Mercury Tour</div>
+                        <div class="concert-location">Екатеринбург, Экспоцентр</div>
+                        <div class="concert-time">18:30</div>
+                    </div>
+                    <div class="concert-price">от 2 200 ₽</div>
+                    <button class="buy-button">Купить билет</button>
+                </div>
+                
+                <div class="concert-item">
+                    <div class="concert-date">
+                        <div class="date-day">05</div>
+                        <div class="date-month">Янв</div>
+                    </div>
+                    <div class="concert-info">
+                        <div class="concert-title">Taylor Swift - The Eras Tour</div>
+                        <div class="concert-location">Москва, Лужники</div>
+                        <div class="concert-time">19:30</div>
+                    </div>
+                    <div class="concert-price">от 4 500 ₽</div>
+                    <button class="buy-button">Купить билет</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Популярные артисты</h2>
+                <a href="#" class="view-all">Все артисты</a>
+            </div>
+            
+            <div class="grid grid-6">
+                <div class="artist-card">
+                    <div class="artist-img"></div>
+                    <div class="artist-name">The Weeknd</div>
+                    <div class="artist-shows">3 концерта</div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img"></div>
+                    <div class="artist-name">Billie Eilish</div>
+                    <div class="artist-shows">2 концерта</div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img"></div>
+                    <div class="artist-name">Imagine Dragons</div>
+                    <div class="artist-shows">5 концертов</div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img"></div>
+                    <div class="artist-name">Taylor Swift</div>
+                    <div class="artist-shows">1 концерт</div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img"></div>
+                    <div class="artist-name">Drake</div>
+                    <div class="artist-shows">2 концерта</div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img"></div>
+                    <div class="artist-name">Ariana Grande</div>
+                    <div class="artist-shows">4 концерта</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Города</h2>
+                <a href="#" class="view-all">Все города</a>
+            </div>
+            
+            <div class="cities-grid">
+                <div class="city-card">
+                    <div class="city-name">Москва</div>
+                    <div class="city-events">24 концерта</div>
+                </div>
+                
+                <div class="city-card">
+                    <div class="city-name">Санкт-Петербург</div>
+                    <div class="city-events">18 концертов</div>
+                </div>
+                
+                <div class="city-card">
+                    <div class="city-name">Екатеринбург</div>
+                    <div class="city-events">12 концертов</div>
+                </div>
+                
+                <div class="city-card">
+                    <div class="city-name">Казань</div>
+                    <div class="city-events">8 концертов</div>
+                </div>
+                
+                <div class="city-card">
+                    <div class="city-name">Новосибирск</div>
+                    <div class="city-events">6 концертов</div>
+                </div>
+                
+                <div class="city-card">
+                    <div class="city-name">Сочи</div>
+                    <div class="city-events">4 концерта</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section ticket-section">
+            <div class="ticket-info">
+                <h2>Как купить билеты</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Выберите концерт и место</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Оплатите онлайн</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Получите билет на email</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Приходите на концерт!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TOUUUUUUURR</h3>
+                <p>Организация концертов и продажа билетов на музыкальные события по всей России.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Концерты</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Все концерты</a></li>
+                    <li><a href="#">По артистам</a></li>
+                    <li><a href="#">По городам</a></li>
+                    <li><a href="#">Фестивали</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Помощь</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Как купить билет</a></li>
+                    <li><a href="#">Возврат билетов</a></li>
+                    <li><a href="#">Правила посещения</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Партнерам</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Организаторам</a></li>
+                    <li><a href="#">Артистам</a></li>
+                    <li><a href="#">Реклама</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 TOUUUUUUUR © 2000-2025.</p>
+        </div>
+    </footer>
+</body>
+</html>
