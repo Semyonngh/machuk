@@ -127,7 +127,6 @@ body {
     background-color: #333;
 }
 
-/* Секции */
 .section {
     margin-bottom: 3rem;
 }
@@ -257,20 +256,24 @@ margin-bottom: 0.5rem;
 
 .cities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 .city-card {
-    background-color: #f8f9fa;
-    padding: 2rem 1rem;
-    text-align: center;
-    border-radius: 10px;
-    transition: transform 0.3s;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
 
 .city-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .city-name {
@@ -279,8 +282,44 @@ margin-bottom: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
+.city-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.city-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+.city-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.city-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
 .city-events {
-    color: #666;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .ticket-section {
@@ -327,14 +366,22 @@ margin-bottom: 0.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 .footer-section h3 {
     margin-bottom: 1rem;
-    color: black;
+    color: white;
 }
 
 .footer-links {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links li {
@@ -348,13 +395,25 @@ margin-bottom: 0.5rem;
 }
 
 .footer-links a:hover {
-    color: black;
+    color: white;
 }
 
+.copyright p,
+.footer-email {
+    color: #fff;
+    margin: 0;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    height: 100%;
+} 
+
 .copyright {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 1rem;
-    border-top: 1px solid #555;
-    color: #ccc;
+    background-color: #333333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    border-top: none;
 }
