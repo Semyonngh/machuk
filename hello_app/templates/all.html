@@ -2,13 +2,15 @@
 {% load static %}
 
 {%block main%}
-<section class="hero" style="background-image: url('/static/media/concert.jpeg');">
-            <h1>Лучшие концерты именно в твоем городе</h1>
-            <p>Билеты на выступления популярных артистов, фестивали и музыкальные события</p>
-            <button class="cta-button">Купить билеты</button>
-        </section>
+<!-- Добавил id="home" -->
+<section id="home" class="hero" style="background-image: url('/static/media/concert.jpeg');">
+    <h1>Лучшие концерты именно в твоем городе</h1>
+    <p>Билеты на выступления популярных артистов, фестивали и музыкальные события</p>
+    <a href="/tickets/" class="cta-button">Купить билеты</a>
+</section>
 
-        <section class="section">
+        <!-- Добавил id="concerts" -->
+        <section id="concerts" class="section">
             <div class="section-header">
                 <h2 class="section-title">Ближайшие концерты</h2>
                 <a href="#" class="view-all">Все концерты</a>
@@ -26,7 +28,7 @@
                         <div class="concert-time">19:00</div>
                     </div>
                     <div class="concert-price">от 12 500 ₽</div>
-                    <button class="buy-button">Купить билет</button>
+                    <a href="/tickets/#theweeknd" class="buy-button" style="text-decoration: none;">Купить билет</a>
                 </div>
                 
                 <div class="concert-item">
@@ -40,7 +42,7 @@
                         <div class="concert-time">20:00</div>
                     </div>
                     <div class="concert-price">от 10 000 ₽</div>
-                    <button class="buy-button">Купить билет</button>
+                    <a href="/tickets/#billieeilish" class="buy-button" style="text-decoration: none;">Купить билет</a>
                 </div>
                 
                 <div class="concert-item">
@@ -54,7 +56,7 @@
                         <div class="concert-time">18:30</div>
                     </div>
                     <div class="concert-price">от 9 200 ₽</div>
-                    <button class="buy-button">Купить билет</button>
+                    <a href="/tickets/#liluzivert" class="buy-button" style="text-decoration: none;">Купить билет</a>
                 </div>
                 
                 <div class="concert-item">
@@ -68,10 +70,10 @@
                         <div class="concert-time">19:30</div>
                     </div>
                     <div class="concert-price">от 7 500 ₽</div>
-                    <button class="buy-button">Купить билет</button>
+                    <a href="/tickets/#travis" class="buy-button" style="text-decoration: none;">Купить билет</a>
                 </div>
 
-                                <div class="concert-item">
+                <div class="concert-item">
                     <div class="concert-date">
                         <div class="date-day">20</div>
                         <div class="date-month">Янв</div>
@@ -82,12 +84,13 @@
                         <div class="concert-time">19:30</div>
                     </div>
                     <div class="concert-price">от 13 500 ₽</div>
-                    <button class="buy-button">Купить билет</button>
+                    <a href="/tickets/#drake" class="buy-button" style="text-decoration: none;">Купить билет</a>
                 </div>
             </div>
         </section>
 
-        <section class="section">
+        <!-- Добавил id="artists" -->
+        <section id="artists" class="section">
             <div class="section-header">
                 <h2 class="section-title">Популярные артисты</h2>
                 <a href="#" class="view-all">Все артисты</a>
@@ -103,7 +106,7 @@
                 <div class="artist-card">
                     <img src="/static/media/billie.jpg" alt="Billie Eilish" class="artist-img">
                     <div class="artist-name">Billie Eilish</div>
-                    <div class="artist-shows">Па́йрат Бэрд - американская певица и автор-исполнитель. Впервые она привлекла внимание публики в 2015 году благодаря дебютному синглу «Ocean Eyes», В 2017 году вышел её первый мини-альбом Don’t Smile at Me, добившийся коммерческого успеха и вошедший в топ-15 чартов многих стран, включая США, Великобританию, Канаду и Австралию.</div>
+                    <div class="artist-shows">Па́йрат Бэрд - американская певица и автор-исполнитель. Впервые она привлекла внимание публики в 2015 году благодаря дебютному синглу «Ocean Eyes», В 2017 году вышел её первый мини-альбом Don't Smile at Me, добившийся коммерческого успеха и вошедший в топ-15 чартов многих стран, включая США, Великобританию, Канаду и Австралию.</div>
                 </div>
                 
                 <div class="artist-card">
@@ -126,7 +129,8 @@
             </div>
         </section>
 
-        <section class="section">
+        <!-- Добавил id="cities" -->
+        <section id="cities" class="section">
             <div class="section-header">
                 <h2 class="section-title">Города</h2>
                 <a href="#" class="view-all">Все города</a>

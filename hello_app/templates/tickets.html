@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style/style.css">
+    <title>Билеты - SOUNDSTAGE</title>
+    <style>
+        .tickets-section {
+            padding: 50px 0;
+        }
+        
+        .ticket-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .ticket-form input,
+        .ticket-form select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .ticket-form button {
+            width: 100%;
+            padding: 15px;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .concert-card {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="/" class="logo">SOUNDSTAGE</a>
+        
+        <nav class="nav">
+            <a href="/">Главная</a>
+            <a href="/#concerts">Концерты</a>
+            <a href="/#artists">Артисты</a>
+            <a href="/#cities">Города</a>
+            <a href="/tickets/" class="active">Билеты</a>
+        </nav>
+
+        <div class="header-actions">
+            <select class="city-select">
+                <option value="">Выберите город</option>
+                <option value="moscow">Москва</option>
+                <option value="spb">Санкт-Петербург</option>
+                <option value="ekb">Екатеринбург</option>
+            </select>
+            <button class="login-button">Войти</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="tickets-section">
+            <div class="container">
+                <h1>Купить билеты</h1>
+                <p>Выберите концерт и забронируйте места</p>
+
+                <!-- The Weeknd -->
+                <div id="theweeknd" class="concert-card">
+                    <div class="concert-info">
+                        <h3>The Weeknd - After Hours Tour</h3>
+                        <p>📍 Санкт-Петербург, Ледовый дворец • 15 декабря 2024 • 19:00</p>
+                        <p><strong>Цена: от 12 500 ₽</strong></p>
+                    </div>
+                    <div class="ticket-form">
+                        <form action="#" method="POST">
+                            <input type="text" placeholder="Имя" required>
+                            <input type="email" placeholder="Email" required>
+                            <input type="tel" placeholder="Телефон" required>
+                            <select required>
+                                <option value="">Количество билетов</option>
+                                <option value="1">1 билет - 12 500 ₽</option>
+                                <option value="2">2 билета - 25 000 ₽</option>
+                                <option value="3">3 билета - 37 500 ₽</option>
+                                <option value="4">4 билета - 50 000 ₽</option>
+                            </select>
+                            <button type="submit">Забронировать билеты</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Billie Eilish -->
+                <div id="billie" class="concert-card">
+                    <div class="concert-info">
+                        <h3>Billie Eilish - Happier Than Ever</h3>
+                        <p>📍 Москва, ВТБ Арена • 20 декабря 2024 • 20:00</p>
+                        <p><strong>Цена: от 10 000 ₽</strong></p>
+                    </div>
+                    <div class="ticket-form">
+                        <form action="#" method="POST">
+                            <input type="text" placeholder="Имя" required>
+                            <input type="email" placeholder="Email" required>
+                            <input type="tel" placeholder="Телефон" required>
+                            <select required>
+                                <option value="">Количество билетов</option>
+                                <option value="1">1 билет - 10 000 ₽</option>
+                                <option value="2">2 билета - 20 000 ₽</option>
+                                <option value="3">3 билета - 30 000 ₽</option>
+                                <option value="4">4 билета - 40 000 ₽</option>
+                            </select>
+                            <button type="submit">Забронировать билеты</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lil Uzi Vert -->
+                <div id="liluzi" class="concert-card">
+                    <div class="concert-info">
+                        <h3>Lil Uzi Vert - PINK TAPE Tour</h3>
+                        <p>📍 Екатеринбург, Экспоцентр • 25 декабря 2024 • 18:30</p>
+                        <p><strong>Цена: от 9 200 ₽</strong></p>
+                    </div>
+                    <div class="ticket-form">
+                        <form action="#" method="POST">
+                            <input type="text" placeholder="Имя" required>
+                            <input type="email" placeholder="Email" required>
+                            <input type="tel" placeholder="Телефон" required>
+                            <select required>
+                                <option value="">Количество билетов</option>
+                                <option value="1">1 билет - 9 200 ₽</option>
+                                <option value="2">2 билета - 18 400 ₽</option>
+                                <option value="3">3 билета - 27 600 ₽</option>
+                                <option value="4">4 билета - 36 800 ₽</option>
+                            </select>
+                            <button type="submit">Забронировать билеты</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Travis Scott -->
+                <div id="travis" class="concert-card">
+                    <div class="concert-info">
+                        <h3>Travis Scott - JACKBOYSSS</h3>
+                        <p>📍 Москва, Лужники • 5 января 2025 • 19:30</p>
+                        <p><strong>Цена: от 7 500 ₽</strong></p>
+                    </div>
+                    <div class="ticket-form">
+                        <form action="#" method="POST">
+                            <input type="text" placeholder="Имя" required>
+                            <input type="email" placeholder="Email" required>
+                            <input type="tel" placeholder="Телефон" required>
+                            <select required>
+                                <option value="">Количество билетов</option>
+                                <option value="1">1 билет - 7 500 ₽</option>
+                                <option value="2">2 билета - 15 000 ₽</option>
+                                <option value="3">3 билета - 22 500 ₽</option>
+                                <option value="4">4 билета - 30 000 ₽</option>
+                            </select>
+                            <button type="submit">Забронировать билеты</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Drake -->
+                <div id="drake" class="concert-card">
+                    <div class="concert-info">
+                        <h3>Drake - $$$OME$$$EXY$$$ONG$</h3>
+                        <p>📍 Москва, Live Arena • 20 января 2025 • 19:30</p>
+                        <p><strong>Цена: от 13 500 ₽</strong></p>
+                    </div>
+                    <div class="ticket-form">
+                        <form action="#" method="POST">
+                            <input type="text" placeholder="Имя" required>
+                            <input type="email" placeholder="Email" required>
+                            <input type="tel" placeholder="Телефон" required>
+                            <select required>
+                                <option value="">Количество билетов</option>
+                                <option value="1">1 билет - 13 500 ₽</option>
+                                <option value="2">2 билета - 27 000 ₽</option>
+                                <option value="3">3 билета - 40 500 ₽</option>
+                                <option value="4">4 билета - 54 000 ₽</option>
+                            </select>
+                            <button type="submit">Забронировать билеты</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SOUNDSTAGE</h4>
+                <p>Организация концертов и продажа билетов на музыкальные события по всей России.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Концерты</h4>
+                <ul class="footer-links">
+                    <li><a href="/#concerts">Все концерты</a></li>
+                    <li><a href="/#artists">По артистам</a></li>
+                    <li><a href="/#cities">По городам</a></li>
+                    <li><a href="#">Фестивали</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Помощь</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Как купить билет</a></li>
+                    <li><a href="#">Возврат билетов</a></li>
+                    <li><a href="#">Правила посещения</a></li>
+                    <li><a href="/#contact">Контакты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Партнерам</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Организаторам</a></li>
+                    <li><a href="#">Артистам</a></li>
+                    <li><a href="#">Реклама</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>SOUNDSTAGE © 2015-2025</p>
+            <div class="footer-email">concert@soundstage.ru</div>
+        </div>
+    </footer>
+</body>
+</html>

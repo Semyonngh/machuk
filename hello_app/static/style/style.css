@@ -90,14 +90,7 @@ body {
 }
 
 .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    border-radius: 10px;
+    z-index: -1;
 }
 
 .hero h1,
@@ -118,18 +111,32 @@ body {
 }
 
 .cta-button {
-    padding: 1rem 2rem;
-    background-color: black;
+    display: inline-block;
+    padding: 15px 30px;
+    background: #ff6b6b;
     color: white;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
     border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10; /* Важно! */
+}
+
+ a.cta-button {
+    color: white;
+    text-decoration: none; 
 }
 
 .cta-button:hover {
-    background-color: #333;
+    background: #e55a5a;
+    text-decoration: none;
+    color: white;
 }
 
 .section {
@@ -210,16 +217,21 @@ body {
 }
 
 .buy-button {
-    padding: 0.7rem 1.5rem;
-    background-color: black;
+    text-decoration: none !important;
+    display: inline-block;
+    padding: 10px 20px;
+    background: black;
     color: white;
+    border-radius: 6px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .buy-button:hover {
-    background-color: black;
+    text-decoration: none;
+    background: black;
+    color: white;
 }
 
 .grid-5 {

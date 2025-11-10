@@ -4,23 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style/style.css">
+    <style>
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Стили для формы */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            margin: 20px 0;
+            max-width: 500px;
+        }
+        
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
     <title>{%block tab_header%}{%endblock%}</title>
 </head>
 <body>
     
     <header class="header">
-        <a href="#" class="logo">SOUNDSTAGE</a>
+        <a href="#home" class="logo">SOUNDSTAGE</a>
         
         <nav class="nav">
-            <a href="#" class="active">Главная</a>
-            <a href="#">Концерты</a>
-            <a href="#">Артисты</a>
-            <a href="#">Города</a>
-            <a href="#">Билеты</a>
+            <a href="#home" class="active">Главная</a>
+            <a href="#concerts">Концерты</a>
+            <a href="#artists">Артисты</a>
+            <a href="#cities">Города</a>
+            <a href="/tickets/">Билеты</a>
         </nav>
 
         <div class="header-actions">
-            <select class="city-select">
+            <select class="city-select" onchange="if(this.value) location.href='#concerts'">
                 <option value="">Выберите город</option>
                 <option value="moscow">Москва</option>
                 <option value="spb">Санкт-Петербург</option>
@@ -33,6 +74,21 @@
     <main class="main-content">
         {%block main%}
         {% endblock %}
+        
+        <!-- Добавьте эту секцию в ваш основной контент -->
+        <section id="contact" style="padding: 50px 0; text-align: center;">
+            <div class="container">
+                <h2>Связаться с нами</h2>
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
+                        <button type="submit">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -45,9 +101,9 @@
             <div class="footer-section">
                 <h4>Концерты</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Все концерты</a></li>
-                    <li><a href="#">По артистам</a></li>
-                    <li><a href="#">По городам</a></li>
+                    <li><a href="#concerts">Все концерты</a></li>
+                    <li><a href="#artists">По артистам</a></li>
+                    <li><a href="#cities">По городам</a></li>
                     <li><a href="#">Фестивали</a></li>
                 </ul>
             </div>
@@ -58,7 +114,7 @@
                     <li><a href="#">Как купить билет</a></li>
                     <li><a href="#">Возврат билетов</a></li>
                     <li><a href="#">Правила посещения</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#contact">Контакты</a></li>
                 </ul>
             </div>
             
