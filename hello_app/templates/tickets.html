@@ -34,15 +34,34 @@
     <main class="main-content">
         <section class="tickets-section">
             <div class="container">
-                <h1>Купить билеты</h1>
-                <p>Выберите концерт и забронируйте места</p>
-
                 <div id="theweeknd" class="concert-card">
-                    <div class="concert-info">
-                        <h3>The Weeknd - After Hours Tour</h3>
-                        <p>Санкт-Петербург, Ледовый дворец • 15 декабря 2024 • 19:00</p>
-                        <p><strong>Цена: от 12 500 ₽</strong></p>
-                    </div>
+        <div id="theweeknd" class="concert-card">
+        <div class="concert-image">
+                <img src="/static/media/theweeknd.jpg" alt="The Weeknd" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+       </div>
+    
+       <div class="concert-info" style="padding: 20px;">
+                <h3 style="margin: 0 0 10px 0; color: black;">The Weeknd - After Hours Tour</h3>
+        
+        <div class="concert-details" style="margin-bottom: 15px;">
+        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">Санкт-Петербург, Ледовый дворец</span>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">15 декабря 2024 • 19:00</span>
+        </div>
+        </div>
+        
+        <div class="price" style="background: black; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+            <strong style="color: white; font-size: 18px;">Цена: от 12 500 ₽</strong>
+        </div>
+    </div>
+    
+    <div class="ticket-form" style="border-radius: 0 0 10px 10px;">
+    </div>
+</div>
                     <div class="ticket-form">
                         <form action="#" method="POST">
                             <input type="text" placeholder="Имя" required>
@@ -60,128 +79,215 @@
                                 <option value="2">2 билета</option>
                                 <option value="3">3 билета</option>
                                 <option value="4">4 билета</option>
+                                <option value="5">5 билетов</option>
                             </select>
                             <button type="submit">Забронировать билеты</button>
                         </form>
                     </div>
                 </div>
-
-                <div id="billie" class="concert-card">
-                    <div class="concert-info">
-                        <h3>Billie Eilish - Happier Than Ever</h3>
-                        <p>Москва, ВТБ Арена • 20 декабря 2024 • 20:00</p>
-                        <p><strong>Цена: от 10 000 ₽</strong></p>
-                    </div>
-                    <div class="ticket-form">
-                        <form action="#" method="POST">
-                            <input type="text" placeholder="Имя" required>
-                            <input type="email" placeholder="Email" required>
-                            <input type="tel" placeholder="Телефон" required>
-                            <select class="ticket-type" required>
-                                <option value="">Выберите тип билета</option>
-                                <option value="dancefloor" data-price="10000">Танцпол - 10 000 ₽</option>
-                                <option value="fan-zone" data-price="15000">Фан-зона - 15 000 ₽</option>
-                                <option value="vip" data-price="22000">VIP - 22 000 ₽</option>
-                            </select>
-                            <select class="ticket-quantity" required>
-                                <option value="">Количество билетов</option>
-                                <option value="1">1 билет</option>
-                                <option value="2">2 билета</option>
-                                <option value="3">3 билета</option>
-                                <option value="4">4 билета</option>
-                            </select>
-                            <button type="submit">Забронировать билеты</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div id="liluzi" class="concert-card">
-                    <div class="concert-info">
-                        <h3>Lil Uzi Vert - PINK TAPE Tour</h3>
-                        <p>Екатеринбург, Экспоцентр • 25 декабря 2024 • 18:30</p>
-                        <p><strong>Цена: от 9 200 ₽</strong></p>
-                    </div>
-                    <div class="ticket-form">
-                        <form action="#" method="POST">
-                            <input type="text" placeholder="Имя" required>
-                            <input type="email" placeholder="Email" required>
-                            <input type="tel" placeholder="Телефон" required>
-                            <select class="ticket-type" required>
-                                <option value="">Выберите тип билета</option>
-                                <option value="dancefloor" data-price="12500">Танцпол - 9 200 ₽</option>
-                                <option value="fan-zone" data-price="18000">Фан-зона - 12 000 ₽</option>
-                                <option value="vip" data-price="25000">VIP - 16 500 ₽</option>
-                            </select>
-                            <select class="ticket-quantity" required>
-                                <option value="">Количество билетов</option>
-                                <option value="1">1 билет</option>
-                                <option value="2">2 билета</option>
-                                <option value="3">3 билета</option>
-                                <option value="4">4 билета</option>
-                            </select>
-                            <button type="submit">Забронировать билеты</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div id="travis" class="concert-card">
-                    <div class="concert-info">
-                        <h3>Travis Scott - JACKBOYSSS</h3>
-                        <p>Москва, Лужники • 5 января 2025 • 19:30</p>
-                        <p><strong>Цена: от 7 500 ₽</strong></p>
-                    </div>
-                    <div class="ticket-form">
-                        <form action="#" method="POST">
-                            <input type="text" placeholder="Имя" required>
-                            <input type="email" placeholder="Email" required>
-                            <input type="tel" placeholder="Телефон" required>
-                            <select class="ticket-type" required>
-                                <option value="">Выберите тип билета</option>
-                                <option value="dancefloor" data-price="12500">Танцпол - 7 500 ₽</option>
-                                <option value="fan-zone" data-price="18000">Фан-зона - 10 000 ₽</option>
-                                <option value="vip" data-price="25000">VIP - 13 000 ₽</option>
-                            </select>
-                            <select class="ticket-quantity" required>
-                                <option value="">Количество билетов</option>
-                                <option value="1">1 билет</option>
-                                <option value="2">2 билета</option>
-                                <option value="3">3 билета</option>
-                                <option value="4">4 билета</option>
-                            </select>
-                            <button type="submit">Забронировать билеты</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div id="drake" class="concert-card">
-                    <div class="concert-info">
-                        <h3>Drake - $$$OME$$$EXY$$$ONG$</h3>
-                        <p>Москва, Live Arena • 20 января 2025 • 19:30</p>
-                        <p><strong>Цена: от 13 500 ₽</strong></p>
-                    </div>
-                    <div class="ticket-form">
-                        <form action="#" method="POST">
-                            <input type="text" placeholder="Имя" required>
-                            <input type="email" placeholder="Email" required>
-                            <input type="tel" placeholder="Телефон" required>
-                            <select class="ticket-type" required>
-                                <option value="">Выберите тип билета</option>
-                                <option value="dancefloor" data-price="12500">Танцпол - 13 500 ₽</option>
-                                <option value="fan-zone" data-price="18000">Фан-зона - 18 000 ₽</option>
-                                <option value="vip" data-price="25000">VIP - 28 000 ₽</option>
-                            </select>
-                            <select class="ticket-quantity" required>
-                                <option value="">Количество билетов</option>
-                                <option value="1">1 билет</option>
-                                <option value="2">2 билета</option>
-                                <option value="3">3 билета</option>
-                                <option value="4">4 билета</option>
-                            </select>
-                            <button type="submit">Забронировать билеты</button>
-                        </form>
-                    </div>
-                </div>
+<div class="concert-card">
+    <div class="concert-image">
+        <img src="/static/media/billie.jpg" alt="Billie Eilish" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+    </div>
+    
+    <div class="concert-info" style="padding: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: black;">Billie Eilish - Happier Than Ever</h3>
+        
+        <div class="concert-details" style="margin-bottom: 15px;">
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">Москва, ВТБ Арена</span>
             </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">20 декабря 2024 • 20:00</span>
+            </div>
+        </div>
+        
+        <div class="price" style="background: black; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+            <strong style="color: white; font-size: 18px;">Цена: от 10 000 ₽</strong>
+        </div>
+    </div>
+    
+    <div class="ticket-form" style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <form action="#" method="POST">
+            <input type="text" placeholder="Имя" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="email" placeholder="Email" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="tel" placeholder="Телефон" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            
+            <select class="ticket-type" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Выберите тип билета</option>
+                <option value="dancefloor" data-price="10000">Танцпол - 10 000 ₽</option>
+                <option value="fan-zone" data-price="15000">Фан-зона - 15 000 ₽</option>
+                <option value="vip" data-price="22000">VIP - 22 000 ₽</option>
+            </select>
+            
+            <select class="ticket-quantity" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Количество билетов</option>
+                <option value="1">1 билет</option>
+                <option value="2">2 билета</option>
+                <option value="3">3 билета</option>
+                <option value="4">4 билета</option>
+                <option value="5">5 билетов</option>
+            </select>
+            
+            <button type="submit" style="width: 100%; padding: 14px; background: black; border: none; border-radius: 6px; color: white; font-size: 16px; cursor: pointer; margin-top: 10px;">Забронировать билеты</button>
+        </form>
+    </div>
+</div>
+
+<div class="concert-card">
+    <div class="concert-image">
+        <img src="/static/media/liluzi.jpg" alt="Lil Uzi Vert" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+    </div>
+    
+    <div class="concert-info" style="padding: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: black;">Lil Uzi Vert - PINK TAPE Tour</h3>
+        
+        <div class="concert-details" style="margin-bottom: 15px;">
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">Екатеринбург, Экспоцентр</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">25 декабря 2024 • 18:30</span>
+            </div>
+        </div>
+        
+        <div class="price" style="background: black; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+            <strong style="color: white; font-size: 18px;">Цена: от 9 200 ₽</strong>
+        </div>
+    </div>
+    
+    <div class="ticket-form" style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <form action="#" method="POST">
+            <input type="text" placeholder="Имя" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="email" placeholder="Email" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="tel" placeholder="Телефон" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            
+            <select class="ticket-type" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Выберите тип билета</option>
+                <option value="dancefloor" data-price="9200">Танцпол - 9 200 ₽</option>
+                <option value="fan-zone" data-price="12000">Фан-зона - 12 000 ₽</option>
+                <option value="vip" data-price="16500">VIP - 16 500 ₽</option>
+            </select>
+            
+            <select class="ticket-quantity" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Количество билетов</option>
+                <option value="1">1 билет</option>
+                <option value="2">2 билета</option>
+                <option value="3">3 билета</option>
+                <option value="4">4 билета</option>
+                <option value="5">5 билетов</option>
+            </select>
+            
+            <button type="submit" style="width: 100%; padding: 14px; background: black; border: none; border-radius: 6px; color: white; font-size: 16px; cursor: pointer; margin-top: 10px;">Забронировать билеты</button>
+        </form>
+    </div>
+</div>
+
+<div id="travis" class="concert-card">
+    <div class="concert-image">
+        <img src="/static/media/travis.jpg" alt="Travis Scott" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+    </div>
+    
+    <div class="concert-info" style="padding: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: black;">Travis Scott - JACKBOYSSS</h3>
+        
+        <div class="concert-details" style="margin-bottom: 15px;">
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">Москва, Лужники</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">5 января 2025 • 19:30</span>
+            </div>
+        </div>
+        
+        <div class="price" style="background: black; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+            <strong style="color: white; font-size: 18px;">Цена: от 7 500 ₽</strong>
+        </div>
+    </div>
+    
+    <div class="ticket-form" style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <form action="#" method="POST">
+            <input type="text" placeholder="Имя" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="email" placeholder="Email" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="tel" placeholder="Телефон" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            
+            <select class="ticket-type" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Выберите тип билета</option>
+                <option value="dancefloor" data-price="7500">Танцпол - 7 500 ₽</option>
+                <option value="fan-zone" data-price="10000">Фан-зона - 10 000 ₽</option>
+                <option value="vip" data-price="13000">VIP - 13 000 ₽</option>
+            </select>
+            
+            <select class="ticket-quantity" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Количество билетов</option>
+                <option value="1">1 билет</option>
+                <option value="2">2 билета</option>
+                <option value="3">3 билета</option>
+                <option value="4">4 билета</option>
+                <option value="5">5 билетов</option>
+            </select>
+            
+            <button type="submit" style="width: 100%; padding: 14px; background: black; border: none; border-radius: 6px; color: white; font-size: 16px; cursor: pointer; margin-top: 10px;">Забронировать билеты</button>
+        </form>
+    </div>
+</div>
+
+               <div id="drake" class="concert-card">
+    <div class="concert-image">
+        <img src="/static/media/drake.jpg" alt="Drake" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+    </div>
+    
+    <div class="concert-info" style="padding: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: black;">Drake - $$$OME$$$EXY$$$ONG$</h3>
+        
+        <div class="concert-details" style="margin-bottom: 15px;">
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">Москва, Live Arena</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <span style="color: #ccc;"></span>
+                <span style="margin-left: 8px;">20 января 2025 • 19:30</span>
+            </div>
+        </div>
+        
+        <div class="price" style="background: black; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+            <strong style="color: white; font-size: 18px;">Цена: от 13 500 ₽</strong>
+        </div>
+    </div>
+    
+    <div class="ticket-form" style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <form action="#" method="POST">
+            <input type="text" placeholder="Имя" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="email" placeholder="Email" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="tel" placeholder="Телефон" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            
+            <select class="ticket-type" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Выберите тип билета</option>
+                <option value="dancefloor" data-price="13500">Танцпол - 13 500 ₽</option>
+                <option value="fan-zone" data-price="18000">Фан-зона - 18 000 ₽</option>
+                <option value="vip" data-price="28000">VIP - 28 000 ₽</option>
+            </select>
+            
+            <select class="ticket-quantity" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Количество билетов</option>
+                <option value="1">1 билет</option>
+                <option value="2">2 билета</option>
+                <option value="3">3 билета</option>
+                <option value="4">4 билета</option>
+                <option value="5">5 билетов</option>
+            </select>
+            
+            <button type="submit" style="width: 100%; padding: 14px; background: black; border: none; border-radius: 6px; color: black; font-size: 16px; cursor: pointer; margin-top: 10px;">Забронировать билеты</button>
+        </form>
+    </div>
+</div>
         </section>
     </main>
 

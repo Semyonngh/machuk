@@ -24,7 +24,7 @@ body {
     text-decoration: none;
     
 }
-.logo::before {
+.logo:before {
     content: '🎸';
 
 }   
@@ -276,12 +276,12 @@ margin-bottom: 0.5rem;
 }
 
 .city-card {
+    cursor: default;
     position: relative;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     height: 200px;
-    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
 }
@@ -465,8 +465,16 @@ margin-bottom: 0.5rem;
     margin-top: 10px;
 }
 
-.tickets-section {
-    padding: 50px 0;
+.tickets-section .container {
+    text-align: center;
+}
+
+.tickets-section h1 {
+    text-align: center;
+}
+
+.tickets-section p {
+    text-align: center;
 }
 
 .ticket-form {
