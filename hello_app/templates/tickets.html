@@ -34,24 +34,23 @@
     <main class="main-content">
         <section class="tickets-section">
             <div class="container">
-                <div id="theweeknd" class="concert-card">
-        <div id="theweeknd" class="concert-card">
-        <div class="concert-image">
-                <img src="/static/media/theweeknd.jpg" alt="The Weeknd" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
-       </div>
+               <div id="theweeknd" class="concert-card">
+    <div class="concert-image">
+        <img src="/static/media/theweekndbanner.jpg" alt="theweeknd" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px 10px 0 0;">
+    </div>
     
-       <div class="concert-info" style="padding: 20px;">
-                <h3 style="margin: 0 0 10px 0; color: black;">The Weeknd - After Hours Tour</h3>
+    <div class="concert-info" style="padding: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: black;">The Weekend - After Hours Tour</h3>
         
         <div class="concert-details" style="margin-bottom: 15px;">
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
                 <span style="color: #ccc;"></span>
                 <span style="margin-left: 8px;">Санкт-Петербург, Ледовый дворец</span>
-        </div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
                 <span style="color: #ccc;"></span>
                 <span style="margin-left: 8px;">15 декабря 2024 • 19:00</span>
-        </div>
+            </div>
         </div>
         
         <div class="price" style="background: black; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
@@ -59,35 +58,34 @@
         </div>
     </div>
     
-    <div class="ticket-form" style="border-radius: 0 0 10px 10px;">
+    <div class="ticket-form" style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <form action="#" method="POST">
+            <input type="text" placeholder="Имя" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="email" placeholder="Email" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            <input type="tel" placeholder="Телефон" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: white;">
+            
+            <select class="ticket-type" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Выберите тип билета</option>
+                <option value="dancefloor" data-price="13500">Танцпол - 12 500 ₽</option>
+                <option value="fan-zone" data-price="18000">Фан-зона - 16 000 ₽</option>
+                <option value="vip" data-price="28000">VIP - 30 000 ₽</option>
+            </select>
+            
+            <select class="ticket-quantity" required style="width: 100%; padding: 12px; margin: 5px 0; border: 1px solid black; border-radius: 6px; background: rgba(255,255,255,0.1); color: black;">
+                <option value="">Количество билетов</option>
+                <option value="1">1 билет</option>
+                <option value="2">2 билета</option>
+                <option value="3">3 билета</option>
+                <option value="4">4 билета</option>
+                <option value="5">5 билетов</option>
+            </select>
+            
+            <button type="submit" style="width: 100%; padding: 14px; background: black; border: none; border-radius: 6px; color: black; font-size: 16px; cursor: pointer; margin-top: 10px;">Забронировать билеты</button>
+        </form>
     </div>
-</div>
-                    <div class="ticket-form">
-                        <form action="#" method="POST">
-                            <input type="text" placeholder="Имя" required>
-                            <input type="email" placeholder="Email" required>
-                            <input type="tel" placeholder="Телефон" required>
-                            <select class="ticket-type" required>
-                                <option value="">Выберите тип билета</option>
-                                <option value="dancefloor" data-price="12500">Танцпол - 12 500 ₽</option>
-                                <option value="fan-zone" data-price="18000">Фан-зона - 18 000 ₽</option>
-                                <option value="vip" data-price="25000">VIP - 25 000 ₽</option>
-                            </select>
-                            <select class="ticket-quantity" required>
-                                <option value="">Количество билетов</option>
-                                <option value="1">1 билет</option>
-                                <option value="2">2 билета</option>
-                                <option value="3">3 билета</option>
-                                <option value="4">4 билета</option>
-                                <option value="5">5 билетов</option>
-                            </select>
-                            <button type="submit">Забронировать билеты</button>
-                        </form>
-                    </div>
-                </div>
 <div class="concert-card">
     <div class="concert-image">
-        <img src="/static/media/billie.jpg" alt="Billie Eilish" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+        <img src="/static/media/billiebanner.jpg" alt="Billie Eilish" style="width: 100%; height: 350px; object-fit: cover; border-radius: 10px 10px 0 0;">
     </div>
     
     <div class="concert-info" style="padding: 20px;">
@@ -138,7 +136,7 @@
 
 <div class="concert-card">
     <div class="concert-image">
-        <img src="/static/media/liluzi.jpg" alt="Lil Uzi Vert" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+        <img src="/static/media/liluzibanner.jpg" alt="Lil Uzi Vert" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px 10px 0 0;">
     </div>
     
     <div class="concert-info" style="padding: 20px;">
@@ -189,7 +187,7 @@
 
 <div id="travis" class="concert-card">
     <div class="concert-image">
-        <img src="/static/media/travis.jpg" alt="Travis Scott" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+        <img src="/static/media/travisbanner.jpg" alt="Travis Scott" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px 10px 0 0;">
     </div>
     
     <div class="concert-info" style="padding: 20px;">
@@ -240,7 +238,7 @@
 
                <div id="drake" class="concert-card">
     <div class="concert-image">
-        <img src="/static/media/drake.jpg" alt="Drake" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;">
+        <img src="/static/media/drakebanner.jpg" alt="Drake" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px 10px 0 0;">
     </div>
     
     <div class="concert-info" style="padding: 20px;">
