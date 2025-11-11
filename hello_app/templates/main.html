@@ -4,47 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style/style.css">
-    <style>
-        /* Плавная прокрутка */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Стили для формы */
-        .contact-form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
-            margin: 20px 0;
-            max-width: 500px;
-        }
-        
-        .contact-form input, 
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .contact-form button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-    </style>
+    
     <title>{%block tab_header%}{%endblock%}</title>
 </head>
 <body>
@@ -75,7 +35,6 @@
         {%block main%}
         {% endblock %}
         
-        <!-- Добавьте эту секцию в ваш основной контент -->
         <section id="contact" style="padding: 50px 0; text-align: center;">
             <div class="container">
                 <h2>Связаться с нами</h2>
@@ -83,7 +42,7 @@
                     <form action="#" method="POST">
                         <input type="text" name="name" placeholder="Ваше имя" required>
                         <input type="email" name="email" placeholder="Email" required>
-                        <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
+                        <input name="message" placeholder="Сообщение" rows="5" required></input>
                         <button type="submit">Отправить сообщение</button>
                     </form>
                 </div>

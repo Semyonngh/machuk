@@ -431,3 +431,99 @@ margin-bottom: 0.5rem;
     margin-top: 0;
     border-top: none;
 }
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    margin: 20px 0;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    background: black;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.tickets-section {
+    padding: 50px 0;
+}
+
+.ticket-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ticket-form input,
+.ticket-form select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ticket-form button {
+    width: 100%;
+    padding: 15px;
+    background: black;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.concert-card {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+}
+
+.ticket-type, 
+.ticket-quantity {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.total-price {
+    background: rgba(255, 107, 107, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(255, 107, 107, 0.5);
+}
