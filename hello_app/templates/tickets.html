@@ -1,338 +1,76 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style/style.css">
-    <title>Билеты - SOUNDSTAGE</title>
+{% extends "main.html" %}
+{% load static %}
 
-</head>
-<body>
-    
-    <header class="header">
-        <a href="/" class="logo">SOUNDSTAGE</a>
-        
-        <nav class="nav">
-            <a href="/">Главная</a>
-            <a href="/#concerts">Концерты</a>
-            <a href="/#artists">Артисты</a>
-            <a href="/#cities">Города</a>
-            <a href="/tickets/" class="active">Билеты</a>
-        </nav>
+{% block main %}
+<section class="tickets-section">
+    <div class="container">
+        <h1>Купить билеты</h1>
+        <p>Выберите концерт и забронируйте места</p>
 
-        <div class="header-actions">
-            <select class="city-select">
-                <option value="">Выберите город</option>
-                <option value="moscow">Москва</option>
-                <option value="spb">Санкт-Петербург</option>
-                <option value="ekb">Екатеринбург</option>
-            </select>
-            <button class="login-button">Войти</button>
-        </div>
-    </header>
-
-    <main class="main-content">
-        <section class="tickets-section">
-            <div class="container">
-<div id="theweeknd" class="concert-card">
-    <div class="concert-image">
-        <img src="/static/media/theweekndbanner.jpg" alt="The Weeknd">
-    </div>
-    
-    <div class="concert-info">
-        <h3 class="concert-title">The Weeknd - After Hours Tour</h3>
-        
-        <div class="concert-details">
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                Санкт-Петербург, Ледовый дворец
+        {% for concert in concerts %}
+        <div id="{{ concert.artist.name|slugify }}" class="concert-card">
+            <div class="concert-image">
+                <img src="{{ concert.artist.image.url }}" alt="{{ concert.artist.name }}">
             </div>
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                15 декабря 2024 • 19:00
+            
+            <div class="concert-info">
+                <h3 class="concert-title">{{ concert.artist.name }}</h3>
+                
+                <div class="concert-details">
+                    <div class="detail-item">
+                        <span class="detail-icon"></span>
+                        {{ concert.venue.city }}, {{ concert.venue.name }}
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon"></span>
+                        {{ concert.start_time|date:"d E Y" }} • {{ concert.start_time|time:"H:i" }}
+                    </div>
+                </div>
+                
+                <div class="price-tag">
+                    <strong class="price-amount">
+                        Цена: от {{ concert.get_min_price }} ₽
+                    </strong>
+                </div>
             </div>
-        </div>
-        
-        <div class="price-tag">
-            <strong class="price-amount">Цена: от 12 500 ₽</strong>
-        </div>
-    </div>
-    
-    <div class="ticket-form">
-        <form action="#" method="POST">
-            <input type="text" placeholder="Имя" required class="form-input">
-            <input type="email" placeholder="Email" required class="form-input">
-            <input type="tel" placeholder="Телефон" required class="form-input">
             
-            <select class="form-input ticket-type" required>
-                <option value="">Выберите тип билета</option>
-                <option value="dancefloor" data-price="12500">Танцпол - 12 500 ₽</option>
-                <option value="fan-zone" data-price="18000">Фан-зона - 18 000 ₽</option>
-                <option value="vip" data-price="25000">VIP - 25 000 ₽</option>
-            </select>
-            
-            <select class="form-input ticket-quantity" required>
-                <option value="">Количество билетов</option>
-                <option value="1">1 билет</option>
-                <option value="2">2 билета</option>
-                <option value="3">3 билета</option>
-                <option value="4">4 билета</option>
-                <option value="5">5 билетов</option>
-            </select>
-            
-            <button type="submit" class="submit-btn">Забронировать билеты</button>
-        </form>
-    </div>
-</div>
-<div id="billie" class="concert-card">
-    <div class="concert-image">
-        <img src="/static/media/billiebanner.jpg" alt="Billie Eilish">
-    </div>
-    
-    <div class="concert-info">
-        <h3 class="concert-title">Billie Eilish - Happier Than Ever</h3>
-        
-        <div class="concert-details">
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                Москва, ВТБ Арена
-            </div>
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                20 декабря 2024 • 20:00
+            <div class="ticket-form">
+                <form action="{% url 'buy_ticket' concert.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Имя" required class="form-input">
+                    <input type="email" name="email" placeholder="Email" required class="form-input">
+                    <input type="tel" name="phone" placeholder="Телефон" required class="form-input">
+                    
+                    <select name="ticket_type" class="form-input" required>
+                        <option value="">Выберите тип билета</option>
+                        <option value="dancefloor">Танцпол</option>
+                        <option value="fan-zone">Фан-зона</option>
+                        <option value="vip">VIP</option>
+                    </select>
+                    
+                    <select name="ticket_id" class="form-input" required>
+                        <option value="">Выберите категорию билета</option>
+                        {% for ticket in concert.ticket_set.all %}
+                        <option value="{{ ticket.id }}">
+                            {{ ticket.category_id.name }} - {{ ticket.price }} ₽ (доступно: {{ ticket.quantity }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                    
+                    <select name="quantity" class="form-input" required>
+                        <option value="">Количество билетов</option>
+                        <option value="1">1 билет</option>
+                        <option value="2">2 билета</option>
+                        <option value="3">3 билета</option>
+                        <option value="4">4 билета</option>
+                        <option value="5">5 билетов</option>
+                    </select>
+                    
+                    <button type="submit" class="submit-btn">Забронировать билеты</button>
+                </form>
             </div>
         </div>
-        
-        <div class="price-tag">
-            <strong class="price-amount">Цена: от 10 000 ₽</strong>
-        </div>
+        {% endfor %}
     </div>
-    
-    <div class="ticket-form">
-        <form action="#" method="POST">
-            <input type="text" placeholder="Имя" required class="form-input">
-            <input type="email" placeholder="Email" required class="form-input">
-            <input type="tel" placeholder="Телефон" required class="form-input">
-            
-            <select class="form-input ticket-type" required>
-                <option value="">Выберите тип билета</option>
-                <option value="dancefloor" data-price="10000">Танцпол - 10 000 ₽</option>
-                <option value="fan-zone" data-price="15000">Фан-зона - 15 000 ₽</option>
-                <option value="vip" data-price="22000">VIP - 22 000 ₽</option>
-            </select>
-            
-            <select class="form-input ticket-quantity" required>
-                <option value="">Количество билетов</option>
-                <option value="1">1 билет</option>
-                <option value="2">2 билета</option>
-                <option value="3">3 билета</option>
-                <option value="4">4 билета</option>
-                <option value="5">5 билетов</option>
-            </select>
-            
-            <button type="submit" class="submit-btn">Забронировать билеты</button>
-        </form>
-    </div>
-</div>
-
-<div id="liluzi" class="concert-card">
-    <div class="concert-image">
-        <img src="/static/media/liluzibanner.jpg" alt="Lil Uzi Vert">
-    </div>
-    
-    <div class="concert-info">
-        <h3 class="concert-title">Lil Uzi Vert - PINK TAPE Tour</h3>
-        
-        <div class="concert-details">
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                Екатеринбург, Экспоцентр
-            </div>
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                25 декабря 2024 • 18:30
-            </div>
-        </div>
-        
-        <div class="price-tag">
-            <strong class="price-amount">Цена: от 9 200 ₽</strong>
-        </div>
-    </div>
-    
-    <div class="ticket-form">
-        <form action="#" method="POST">
-            <input type="text" placeholder="Имя" required class="form-input">
-            <input type="email" placeholder="Email" required class="form-input">
-            <input type="tel" placeholder="Телефон" required class="form-input">
-            
-            <select class="form-input ticket-type" required>
-                <option value="">Выберите тип билета</option>
-                <option value="dancefloor" data-price="9200">Танцпол - 9 200 ₽</option>
-                <option value="fan-zone" data-price="12000">Фан-зона - 12 000 ₽</option>
-                <option value="vip" data-price="16500">VIP - 16 500 ₽</option>
-            </select>
-            
-            <select class="form-input ticket-quantity" required>
-                <option value="">Количество билетов</option>
-                <option value="1">1 билет</option>
-                <option value="2">2 билета</option>
-                <option value="3">3 билета</option>
-                <option value="4">4 билета</option>
-                <option value="5">5 билетов</option>
-            </select>
-            
-            <button type="submit" class="submit-btn">Забронировать билеты</button>
-        </form>
-    </div>
-</div>
-
-<div id="travis" class="concert-card">
-    <div class="concert-image">
-        <img src="/static/media/travisbanner.jpg" alt="Travis Scott">
-    </div>
-    
-    <div class="concert-info">
-        <h3 class="concert-title">Travis Scott - JACKBOYSSS</h3>
-        
-        <div class="concert-details">
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                Москва, Лужники
-            </div>
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                5 января 2025 • 19:30
-            </div>
-        </div>
-        
-        <div class="price-tag">
-            <strong class="price-amount">Цена: от 7 500 ₽</strong>
-        </div>
-    </div>
-    
-    <div class="ticket-form">
-        <form action="#" method="POST">
-            <input type="text" placeholder="Имя" required class="form-input">
-            <input type="email" placeholder="Email" required class="form-input">
-            <input type="tel" placeholder="Телефон" required class="form-input">
-            
-            <select class="form-input ticket-type" required>
-                <option value="">Выберите тип билета</option>
-                <option value="dancefloor" data-price="7500">Танцпол - 7 500 ₽</option>
-                <option value="fan-zone" data-price="10000">Фан-зона - 10 000 ₽</option>
-                <option value="vip" data-price="13000">VIP - 13 000 ₽</option>
-            </select>
-            
-            <select class="form-input ticket-quantity" required>
-                <option value="">Количество билетов</option>
-                <option value="1">1 билет</option>
-                <option value="2">2 билета</option>
-                <option value="3">3 билета</option>
-                <option value="4">4 билета</option>
-                <option value="5">5 билетов</option>
-            </select>
-            
-            <button type="submit" class="submit-btn">Забронировать билеты</button>
-        </form>
-    </div>
-</div>
-
-<div id="drake" class="concert-card">
-    <div class="concert-image">
-        <img src="/static/media/drakebanner.jpg" alt="Drake">
-    </div>
-    
-    <div class="concert-info">
-        <h3 class="concert-title">Drake - $$$OME$$$EXY$$$ONG$</h3>
-        
-        <div class="concert-details">
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                Москва, Live Arena
-            </div>
-            <div class="detail-item">
-                <span class="detail-icon"></span>
-                20 января 2025 • 19:30
-            </div>
-        </div>
-        
-        <div class="price-tag">
-            <strong class="price-amount">Цена: от 13 500 ₽</strong>
-        </div>
-    </div>
-    
-    <div class="ticket-form">
-        <form action="#" method="POST">
-            <input type="text" placeholder="Имя" required class="form-input">
-            <input type="email" placeholder="Email" required class="form-input">
-            <input type="tel" placeholder="Телефон" required class="form-input">
-            
-            <select class="form-input ticket-type" required>
-                <option value="">Выберите тип билета</option>
-                <option value="dancefloor" data-price="13500">Танцпол - 13 500 ₽</option>
-                <option value="fan-zone" data-price="18000">Фан-зона - 18 000 ₽</option>
-                <option value="vip" data-price="28000">VIP - 28 000 ₽</option>
-            </select>
-            
-            <select class="form-input ticket-quantity" required>
-                <option value="">Количество билетов</option>
-                <option value="1">1 билет</option>
-                <option value="2">2 билета</option>
-                <option value="3">3 билета</option>
-                <option value="4">4 билета</option>
-                <option value="5">5 билетов</option>
-            </select>
-            
-            <button type="submit" class="submit-btn">Забронировать билеты</button>
-        </form>
-    </div>
-</div>
-</div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>SOUNDSTAGE</h4>
-                <p>Организация концертов и продажа билетов на музыкальные события по всей России.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Концерты</h4>
-                <ul class="footer-links">
-                    <li><a href="/#concerts">Все концерты</a></li>
-                    <li><a href="/#artists">По артистам</a></li>
-                    <li><a href="/#cities">По городам</a></li>
-                    <li><a href="#">Фестивали</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Помощь</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Как купить билет</a></li>
-                    <li><a href="#">Возврат билетов</a></li>
-                    <li><a href="#">Правила посещения</a></li>
-                    <li><a href="/#contact">Контакты</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Партнерам</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Организаторам</a></li>
-                    <li><a href="#">Артистам</a></li>
-                    <li><a href="#">Реклама</a></li>
-                    <li><a href="#">Вакансии</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>SOUNDSTAGE © 2015-2025</p>
-            <div class="footer-email">concert@soundstage.ru</div>
-        </div>
-    </footer>
-</body>
-</html>
+</section>
+{% endblock %}
