@@ -22,7 +22,6 @@ body {
     font-weight: bold;
     color: white;
     text-decoration: none;
-    
 }
 
 .nav {
@@ -66,7 +65,6 @@ body {
 
 .login-button:hover {
     background: rgb(49, 49, 49);
-    text-decoration: none;
     color: white;
 }
 
@@ -87,17 +85,6 @@ body {
     position: relative;
 }
 
-.hero::before {
-    z-index: -1;
-}
-
-.hero h1,
-.hero p,
-.hero button {
-    position: relative;
-    z-index: 1;
-}
-
 .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -111,9 +98,9 @@ body {
 .cta-button {
     display: inline-block;
     padding: 15px 30px;
-    background:black;
+    background: black;
     color: white;
-    text-decoration: none !important;
+    text-decoration: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: bold;
@@ -122,19 +109,10 @@ body {
     cursor: pointer;
     transition: background 0.3s ease;
     margin-top: 20px;
-    position: relative;
-    z-index: 10; /* Важно! */
-}
-
- a.cta-button {
-    color: white;
-    text-decoration: none; 
 }
 
 .cta-button:hover {
     background: rgb(49, 49, 49);
-    text-decoration: none;
-    color: white;
 }
 
 .section {
@@ -201,39 +179,40 @@ body {
     color: black;
 }
 
-.concert-location,
-.concert-time {
+.concert-location {
     color: black;
     margin-bottom: 0.2rem;
+}
+
+.concert-right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin-left: auto;
 }
 
 .concert-price {
     font-size: 1.3rem;
     font-weight: bold;
     color: black;
-    margin-right: 1.5rem;
 }
 
 .buy-button {
-    text-decoration: none !important;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 25px;
     background: black;
     color: white;
+    text-decoration: none;
     border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease;
 }
 
 .buy-button:hover {
-    text-decoration: none;
-    background: black;
-    color: white;
-}
-
-.grid-5 {
-    display: grid;
+    background: rgb(49, 49, 49);
 }
 
 .artist-card {
@@ -258,7 +237,7 @@ body {
 
 .artist-name {
     font-weight: bold;
-margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .artist-shows {
@@ -266,20 +245,13 @@ margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
 
-.cities-grid {
-    display: grid;
-    gap: 1.5rem;
-}
-
 .city-card {
-    cursor: default;
     position: relative;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     height: 200px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
 }
 
 .city-card:hover {
@@ -287,17 +259,10 @@ margin-bottom: 0.5rem;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-.city-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
 .city-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
 .city-overlay {
@@ -385,11 +350,6 @@ margin-bottom: 0.5rem;
     text-align: center;
 }
 
-.footer-section h3 {
-    margin-bottom: 1rem;
-    color: white;
-}
-
 .footer-links {
     list-style: none;
     padding: 0;
@@ -410,23 +370,11 @@ margin-bottom: 0.5rem;
     color: white;
 }
 
-.copyright p,
-.footer-email {
-    color: #fff;
-    margin: 0;
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
-    height: 100%;
-} 
-
 .copyright {
-    color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 0;
-    border-top: none;
+    margin-top: 2rem;
 }
 
 .contact-form {
@@ -434,7 +382,6 @@ margin-bottom: 0.5rem;
     padding: 30px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
     margin: 20px 0;
 }
 
@@ -457,21 +404,9 @@ margin-bottom: 0.5rem;
     border: none;
     border-radius: 10px;
     color: white;
-    font-size: 10px;
+    font-size: 18px;
     cursor: pointer;
     margin-top: 10px;
-}
-
-.tickets-section .container {
-    text-align: center;
-}
-
-.tickets-section h1 {
-    text-align: center;
-}
-
-.tickets-section p {
-    text-align: center;
 }
 
 .ticket-form {
@@ -517,7 +452,6 @@ margin-bottom: 0.5rem;
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 10px 10px;
 }
 
 .concert-details {
@@ -529,30 +463,6 @@ margin-bottom: 0.5rem;
     align-items: center;
     margin-bottom: 5px;
     color: black;
-}
-
-.detail-icon {
-    margin-right: 8px;
-}
-
-.ticket-type, 
-.ticket-quantity {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 8px;
-    background: black;
-    color: white;
-    border: 1px solid black
-}
-
-.total-price {
-    background: black;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid black;
 }
 
 .price-tag {
@@ -580,38 +490,11 @@ margin-bottom: 0.5rem;
     margin-top: 10px;
 }
 
-.ticket-form {
-  max-width: 4000px;
-  margin: 0 auto;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
 .form-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-select.form-input {
-  background-color: white;
-}
-
-.concert-right-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-    margin-left: auto;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
