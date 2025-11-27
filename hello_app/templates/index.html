@@ -2,11 +2,18 @@
 {% load static %}
 
 {%block main%}
-<section id="home" class="hero" style="background-image: url('/static/media/concert.jpg');">
-    <h1>Лучшие концерты именно в твоем городе</h1>
-    <p>Билеты на выступления популярных артистов, фестивали и музыкальные события</p>
-    <a href="/tickets/" class="cta-button">Купить билеты</a>
-</section>
+        <section id="search" class="section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Поиск концертов, артистов или городов" class="search-input">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </section>
+
+        <section id="home" class="hero" style="background-image: url('/static/media/concert.jpg');">
+            <h1>Лучшие концерты именно в твоем городе</h1>
+            <p>Билеты на выступления популярных артистов, фестивали и музыкальные события</p>
+            <a href="/tickets/" class="cta-button">Купить билеты</a>
+        </section>
 
         <section id="concerts" class="section">
             <div class="section-header">
