@@ -35,20 +35,21 @@
         {%block main%}
         {% endblock %}
         
-        <section id="contact" style="padding: 50px 0; text-align: center;">
-            <div class="container">
-                <h2>Связаться с нами</h2>
-                <div class="contact-form">
-                    <form action="#" method="POST">
-                        <input type="text" name="name" placeholder="Ваше имя" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input name="message" placeholder="Сообщение" rows="5" required></input>
-                        <button type="submit">Отправить сообщение</button>
-                    </form>
-                </div>
+    <section id="contact" style="padding: 50px 0; text-align: center;">
+        <div class="container">
+            <h2>Связаться с нами</h2>
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input name="message" placeholder="Сообщение" rows="5" required>
+                    <button type="submit">Отправить сообщение</button>
+                </form>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+        </main>
 
     <footer class="footer">
         <div class="footer-content">
@@ -74,20 +75,8 @@
                     <li><a href="#">Правила посещения</a></li>
                 </ul>
             </div>
-            
-            <div class="footer-section">
-                <h4>Партнерам</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Организаторам</a></li>
-                    <li><a href="#">Артистам</a></li>
-                    <li><a href="#">Реклама</a></li>
-                    <li><a href="#">Вакансии</a></li>
-                </ul>
-            </div>
-        </div>
         
         <div class="copyright">
-            <p>SOUNDSTAGE © 2015-2025</p>
             <div class="footer-email">concert@soundstage.ru</div>
         </div>
     </footer>

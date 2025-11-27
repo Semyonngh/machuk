@@ -1,22 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-class Post(models.Model):
-    post = models.CharField("Должность", max_length=50)
-    price = models.DecimalField("Зарплата", max_digits=10, decimal_places=2)
-    
-    class Meta:
-        verbose_name = "Должность"
-        verbose_name_plural = "Должности"
-        ordering = ["price"]
-        indexes = [
-            models.Index(fields=["post"]),
-            models.Index(fields=["price"]),
-        ]
-        
-    def __str__(self):
-        return f"{self.post}"
-
 class Category(models.Model):
     name = models.CharField("Название", max_length=50)
     
@@ -30,30 +14,10 @@ class Category(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-class Staff(models.Model):
-    first_name = models.CharField("Имя", max_length=50)
-    last_name = models.CharField("Фамилия", max_length=50)
-    father_name = models.CharField("Отчество", max_length=50)
-    phone_number = models.CharField("Номер телефона", max_length=11)
-    post_id = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name="Должность")
-
-    class Meta:
-        verbose_name = "Сотрудник"
-        verbose_name_plural = "Сотрудники"
-        ordering = ["last_name", "first_name", "father_name"]
-        indexes = [
-            models.Index(fields=["first_name"]),
-            models.Index(fields=["last_name"]),
-            models.Index(fields=["phone_number"])
-        ]
-    
-    def __str__(self):
-        return f"{self.last_name} {self.first_name}"
-
 class Artist(models.Model):
     name = models.CharField("Имя артиста", max_length=100)
     description = models.TextField("Описание артиста")
-    image = models.URLField("Фото артиста")
+    image = models.URLField("Фото артиста", max_length=500)
     genre = models.CharField("Жанр", max_length=50, blank=True)
     
     class Meta:
@@ -103,28 +67,11 @@ class Concert(models.Model):
         return f"{self.artist.name} - {self.venue.city} ({self.start_time.strftime('%d.%m.%Y')})"
     
     def get_ticket_categories(self):
-        """Получить все категории билетов для этого концерта"""
         return self.ticket_set.all()
     
     def get_min_price(self):
-        """Минимальная цена билета на концерт"""
         tickets = self.ticket_set.all()
         return min(ticket.price for ticket in tickets) if tickets else 0
-
-class Shift(models.Model):
-    hours = models.TimeField('Часы работы')
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name="Сотрудник")
-    concert_id = models.ForeignKey(Concert, on_delete=models.CASCADE, verbose_name="Концерт")
-    
-    class Meta:
-        verbose_name = "Смена"
-        verbose_name_plural = "Смены"
-        indexes = [
-            models.Index(fields=["hours"])
-        ]
-    
-    def __str__(self):
-        return f"{self.staff_id} - {self.concert_id}"
 
 class Ticket(models.Model):
     concert = models.ForeignKey(Concert, on_delete=models.CASCADE, verbose_name="Концерт")

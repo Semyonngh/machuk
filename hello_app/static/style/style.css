@@ -24,10 +24,6 @@ body {
     text-decoration: none;
     
 }
-.logo:before {
-    content: '🎸';
-
-}   
 
 .nav {
     display: flex;
@@ -196,7 +192,8 @@ body {
 }
 
 .concert-info {
-    padding: 20px;
+    flex: 1;
+    margin: 0 20px;
 }
 
 .concert-title {
@@ -609,4 +606,12 @@ label {
 
 select.form-input {
   background-color: white;
+}
+
+.concert-right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin-left: auto;
 }

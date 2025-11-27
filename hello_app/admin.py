@@ -1,21 +1,10 @@
 from django.contrib import admin
-from .models import Post, Category, Staff, Artist, Venue, Concert, Shift, Ticket, TicketOrder
-
-@admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
-    list_display = ['post', 'price']
-    search_fields = ['post']
+from .models import Category, Artist, Venue, Concert, Ticket, TicketOrder
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
-
-@admin.register(Staff)
-class StaffAdmin(admin.ModelAdmin):
-    list_display = ['last_name', 'first_name', 'father_name', 'phone_number', 'post_id']
-    list_filter = ['post_id']
-    search_fields = ['last_name', 'first_name']
 
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
@@ -35,11 +24,6 @@ class ConcertAdmin(admin.ModelAdmin):
     list_filter = ['venue__city', 'start_time']
     search_fields = ['artist__name', 'venue__city']
     date_hierarchy = 'start_time'
-
-@admin.register(Shift)
-class ShiftAdmin(admin.ModelAdmin):
-    list_display = ['staff_id', 'concert_id', 'hours']
-    list_filter = ['concert_id']
 
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):

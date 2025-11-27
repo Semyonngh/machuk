@@ -59,3 +59,10 @@ def order_success(request, order_id):
 
 def online(request):
     return concerts_list(request)
+
+def tickets(request):
+    concerts = Concert.objects.all()
+    return render(request, 'tickets.html', {'concerts': concerts})
+
+def index(request):
+    return render(request, 'index.html')
