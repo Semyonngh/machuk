@@ -21,13 +21,12 @@
         </nav>
 
         <div class="header-actions">
-            <select class="city-select" onchange="if(this.value) location.href='#concerts'">
-                <option value="">Выберите город</option>
-                <option value="moscow">Москва</option>
-                <option value="spb">Санкт-Петербург</option>
-                <option value="ekb">Екатеринбург</option>
+            <select class="city-select" onchange="if(this.value) window.location.hash = this.value">
+                <option value="">Выберите что нужно</option>
+                <option value="concerts">Концерты</option>
+                <option value="artists">Артисты</option>
+                <option value="cities">Площадки</option>
             </select>
-            <button class="login-button">Войти</button>
         </div>
     </header>
 
@@ -64,15 +63,6 @@
                     <li><a href="#concerts">Все концерты</a></li>
                     <li><a href="#artists">По артистам</a></li>
                     <li><a href="#cities">По городам</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Помощь</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Как купить билет</a></li>
-                    <li><a href="#">Возврат билетов</a></li>
-                    <li><a href="#">Правила посещения</a></li>
                 </ul>
             </div>
         

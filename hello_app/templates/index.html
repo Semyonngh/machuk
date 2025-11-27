@@ -2,215 +2,198 @@
 {% load static %}
 
 {%block main%}
-        <section id="search" class="section">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Поиск концертов, артистов или городов" class="search-input">
-                <div id="searchResults" class="search-results"></div>
-            </div>
-        </section>
-
-        <section id="home" class="hero" style="background-image: url('/static/media/concert.jpg');">
-            <h1>Лучшие концерты именно в твоем городе</h1>
-            <p>Билеты на выступления популярных артистов, фестивали и музыкальные события</p>
-            <a href="/tickets/" class="cta-button">Купить билеты</a>
-        </section>
-
-        <section id="concerts" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Ближайшие концерты</h2>
-                <a href="#concerts" class="view-all">Все концерты</a>
-            </div>
-            
-            <div class="concerts-list">
-                <div class="concert-item">
-                    <div class="concert-date">
-                        <div class="date-day">15</div>
-                        <div class="date-month">Дек</div>
-                    </div>
-                    <div class="concert-info">
-                        <div class="concert-title">The Weeknd - After Hours Tour</div>
-                        <div class="concert-location">Санкт-Петербург, Ледовый дворец</div>
-                        <div class="concert-time">19:00</div>
-                    </div>
-                    <div class="concert-price">от 12 500 ₽</div>
-                    <a href="/tickets/#theweeknd" class="buy-button">Купить билет</a>
-                </div>
-                
-                <div class="concert-item">
-                    <div class="concert-date">
-                        <div class="date-day">20</div>
-                        <div class="date-month">Дек</div>
-                    </div>
-                    <div class="concert-info">
-                        <div class="concert-title">Billie Eilish - Happier Than Ever</div>
-                        <div class="concert-location">Москва, ВТБ Арена</div>
-                        <div class="concert-time">20:00</div>
-                    </div>
-                    <div class="concert-price">от 10 000 ₽</div>
-                    <a href="/tickets/#billie" class="buy-button">Купить билет</a>
-                </div>
-                
-                <div class="concert-item">
-                    <div class="concert-date">
-                        <div class="date-day">25</div>
-                        <div class="date-month">Дек</div>
-                    </div>
-                    <div class="concert-info">
-                        <div class="concert-title">Lil Uzi Vert - PINK TAPE Tour</div>
-                        <div class="concert-location">Екатеринбург, Экспоцентр</div>
-                        <div class="concert-time">18:30</div>
-                    </div>
-                    <div class="concert-price">от 9 200 ₽</div>
-                    <a href="/tickets/#liluzi" class="buy-button">Купить билет</a>
-                </div>
-                
-                <div class="concert-item">
-                    <div class="concert-date">
-                        <div class="date-day">05</div>
-                        <div class="date-month">Янв</div>
-                    </div>
-                    <div class="concert-info">
-                        <div class="concert-title">Travis Scott - JACKBOYSSS</div>
-                        <div class="concert-location">Москва, Лужники</div>
-                        <div class="concert-time">19:30</div>
-                    </div>
-                    <div class="concert-price">от 7 500 ₽</div>
-                    <a href="/tickets/#travis" class="buy-button">Купить билет</a>
-                </div>
-
-                <div class="concert-item">
-                    <div class="concert-date">
-                        <div class="date-day">20</div>
-                        <div class="date-month">Янв</div>
-                    </div>
-                    <div class="concert-info">
-                        <div class="concert-title">Drake - $$$OME$$$EXY$$$ONG$</div>
-                        <div class="concert-location">Москва, Live Arena</div>
-                        <div class="concert-time">19:30</div>
-                    </div>
-                    <div class="concert-price">от 13 500 ₽</div>
-                    <a href="/tickets/#drake" class="buy-button">Купить билет</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="artists" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Популярные артисты</h2>
-                <a href="#artists" class="view-all">Все артисты</a>
-            </div>
-            
-            <div class="grid grid-5">
-                <div class="artist-card">
-                    <img src="/static/media/theweeknd.jpg" alt="The Weeknd" class="artist-img">
-                    <div class="artist-name">The Weeknd</div>
-                    <div class="artist-shows">Макко́нен Те́сфайе - канадский певец, автор песен и актёр. Обладатель множества музыкальных наград, в том числе четырёх премий «Грэмми», двадцати премий Billboard Music Awards, восьми премий American Music Awards и трёх премий MTV Video Music Awards.</div>
-                </div>
-                
-                <div class="artist-card">
-                    <img src="/static/media/billie.jpg" alt="Billie Eilish" class="artist-img">
-                    <div class="artist-name">Billie Eilish</div>
-                    <div class="artist-shows">Па́йрат Бэрд - американская певица и автор-исполнитель. Впервые она привлекла внимание публики в 2015 году благодаря дебютному синглу «Ocean Eyes», В 2017 году вышел её первый мини-альбом Don't Smile at Me, добившийся коммерческого успеха и вошедший в топ-15 чартов многих стран, включая США, Великобританию, Канаду и Австралию.</div>
-                </div>
-                
-                <div class="artist-card">
-                    <img src="/static/media/liluzi.jpg" alt="Lil Uzi Vert" class="artist-img">
-                    <div class="artist-name">Lil Uzi Vert</div>
-                    <div class="artist-shows">Саймир Бизил Вудс - американский рэпер, певец и автор песен. Родившийся и выросший в Филадельфии, Lil Uzi Vert получил признание после выпуска коммерческого микстейпа Luv Is Rage.</div>
-                </div>
-                
-                <div class="artist-card">
-                    <img src="/static/media/travis.jpg" alt="Travis Scott" class="artist-img">
-                    <div class="artist-name">Travis Scott</div>
-                    <div class="artist-shows">Жак Бермен Уэ́бстер II, более известный под псевдонимом Трэвис Скотт - американский рэпер, певец, автор песен и музыкальный продюсер.</div>
-                </div>
-                
-                <div class="artist-card">
-                    <img src="/static/media/drake.jpg" alt="Drake" class="artist-img">
-                    <div class="artist-name">Drake</div>
-                    <div class="artist-shows">О́бри Дрейк Грэм более известный мононимно как Дрейк - канадский рэпер, певец, автор песен, музыкальный продюсер, актёр и предприниматель.</div>
-                </div>
-            </div>
-        </section>
+<section id="search" class="section">
+    <div class="search-container">
+        <form method="GET" action="{% url 'home' %}" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                value="{{ search_query }}"
+                placeholder="Введите артиста, город или площадку" 
+                class="search-input"
+            >
+            <button type="submit" class="search-button">Найти</button>
+            {% if search_query %}
+            <a href="{% url 'home' %}" class="clear-search">Очистить</a>
+            {% endif %}
+        </form>
         
-        <section id="cities" class="section">
-            <div class="section-header">
-                <h2 class="section-title">Города</h2>
-                <a href="#cities" class="view-all">Все города</a>
-            </div>
-            
-            <div class="cities-grid-5">
-                <div class="city-card">
-                        <img src="/static/media/lychini.jpeg" alt="Москва" class="city-img">
-                        <div class="city-overlay"></div>
-                        <div class="city-info">
-                    <div class="city-name">Москва</div>
-                    <div class="city-events">Лужники (стадион)</div>
-                    <div class="city-events">Вместимость стадиона до 85 000 тыс. зрителей</div>
-                </div>    
-           </div>
-                
-                <div class="city-card">
-                        <img src="/static/media/spb.png" alt="Санкт-Петербург" class="city-img">
-                        <div class="city-overlay"></div>
-                        <div class="city-info">
-                    <div class="city-name">Санкт-Петербург</div>
-                    <div class="city-events">Ледовый дворец</div>
-                    <div class="city-events">Вместимость площадки до 12 300 тыс. зрителей</div>
-                </div>
-            </div>
-                
-                <div class="city-card">
-                        <img src="/static/media/ekb.jpg" alt="Екатеринбург" class="city-img">
-                        <div class="city-overlay"></div>
-                        <div class="city-info">
-                    <div class="city-name">Екатеринбург</div>
-                    <div class="city-events">Экспоцентр</div>
-                    <div class="city-events">Вместимость площадки до 4000 тыс. зрителей</div>
-                </div>
-            </div>
-                <div class="city-card">
-                        <img src="/static/media/vtb.jpg" alt="Москва" class="city-img">
-                        <div class="city-overlay"></div>
-                        <div class="city-info">
-                    <div class="city-name">Москва</div>
-                    <div class="city-events">ВТБ Арена</div>
-                    <div class="city-events">Вместимость площадки до 40000 тыс. зрителей</div>
-                </div>
-            </div>
-                <div class="city-card">
-                        <img src="/static/media/livearena.jpg" alt="Москва" class="city-img">
-                        <div class="city-overlay"></div>
-                        <div class="city-info">
-                    <div class="city-name">Москва</div>
-                    <div class="city-events">Live Арена</div>
-                    <div class="city-events">Вместимость площадки до 12 000 тыс. зрителей</div>
-                </div>
-            </div>
-        </section>
+        {% if search_query %}
+        <div class="search-info">
+            Найдено: <strong>{{ concerts.count }}</strong>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-        <section class="section ticket-section">
-            <div class="ticket-info">
-                <h1>Как приобрести билет</h1>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div
-                        class="step-text">Выберите концерт и место</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-text">Оплатите онлайн</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-text">Получите билет на email или прямо на сайте QR-кодом</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <div class="step-text">Приходите на концерт!</div>
-                    </div>
-                </div>
+<section id="home" class="hero" style="background-image: url('/static/media/concert.jpg');">
+    <h1>Лучшие концерты именно в твоем городе</h1>
+    <p>Билеты на выступления популярных артистов, фестивали и музыкальные события</p>
+    <a href="/tickets/" class="cta-button">Купить билеты</a>
+</section>
+
+<section id="concerts" class="section">
+    <div class="section-header">
+        <h2 class="section-title">
+            {% if search_query %}
+                Результаты поиска "{{ search_query }}"
+            {% else %}
+                Ближайшие концерты
+            {% endif %}
+        </h2>
+        {% if not search_query %}
+        <a href="#concerts" class="view-all">Все концерты</a>
+        {% endif %}
+    </div>
+    
+    <div class="concerts-list">
+        {% for concert in concerts %}
+        <div class="concert-item">
+            <div class="concert-date">
+                <div class="date-day">{{ concert.start_time|date:"d" }}</div>
+                <div class="date-month">{{ concert.start_time|date:"M" }}</div>
             </div>
-        </section>
+            <div class="concert-info">
+                <div class="concert-title">{{ concert.artist.name }}</div>
+                <div class="concert-description">{{ concert.description }}</div>
+                <div class="concert-location">{{ concert.venue.city }}, {{ concert.venue.name }}</div>
+                <div class="concert-time">{{ concert.start_time|time:"H:i" }}</div>
+            </div>
+            <div class="concert-right-section">
+                <div class="concert-price">от {{ concert.get_min_price }} ₽</div>
+                <a href="/tickets/#{{ concert.artist.name|slugify }}" class="buy-button">Купить билет</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-results">
+            {% if search_query %}
+            <h3>По запросу "{{ search_query }}" ничего не найдено</h3>
+            <p>Попробуйте изменить поисковый запрос или <a href="{% url 'home' %}">посмотреть все концерты</a></p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="artists" class="section">
+    <div class="section-header">
+        <h2 class="section-title">Популярные артисты</h2>
+        <a href="#artists" class="view-all">Все артисты</a>
+    </div>
+    
+    <div class="grid grid-5">
+        <div class="artist-card">
+            <img src="/static/media/theweeknd.jpg" alt="The Weeknd" class="artist-img">
+            <div class="artist-name">The Weeknd</div>
+            <div class="artist-shows">Макко́нен Те́сфайе - канадский певец, автор песен и актёр. Обладатель множества музыкальных наград, в том числе четырёх премий «Грэмми», двадцати премий Billboard Music Awards, восьми премий American Music Awards и трёх премий MTV Video Music Awards.</div>
+        </div>
+        
+        <div class="artist-card">
+            <img src="/static/media/billie.jpg" alt="Billie Eilish" class="artist-img">
+            <div class="artist-name">Billie Eilish</div>
+            <div class="artist-shows">Па́йрат Бэрд - американская певица и автор-исполнитель. Впервые она привлекла внимание публики в 2015 году благодаря дебютному синглу «Ocean Eyes», В 2017 году вышел её первый мини-альбом Don't Smile at Me, добившийся коммерческого успеха и вошедший в топ-15 чартов многих стран, включая США, Великобританию, Канаду и Австралию.</div>
+        </div>
+        
+        <div class="artist-card">
+            <img src="/static/media/liluzi.jpg" alt="Lil Uzi Vert" class="artist-img">
+            <div class="artist-name">Lil Uzi Vert</div>
+            <div class="artist-shows">Саймир Бизил Вудс - американский рэпер, певец и автор песен. Родившийся и выросший в Филадельфии, Lil Uzi Vert получил признание после выпуска коммерческого микстейпа Luv Is Rage.</div>
+        </div>
+        
+        <div class="artist-card">
+            <img src="/static/media/travis.jpg" alt="Travis Scott" class="artist-img">
+            <div class="artist-name">Travis Scott</div>
+            <div class="artist-shows">Жак Бермен Уэ́бстер II, более известный под псевдонимом Трэвис Скотт - американский рэпер, певец, автор песен и музыкальный продюсер.</div>
+        </div>
+        
+        <div class="artist-card">
+            <img src="/static/media/drake.jpg" alt="Drake" class="artist-img">
+            <div class="artist-name">Drake</div>
+            <div class="artist-shows">О́бри Дрейк Грэм более известный мононимно как Дрейк - канадский рэпер, певец, автор песен, музыкальный продюсер, актёр и предприниматель.</div>
+        </div>
+    </div>
+</section>
+
+<section id="cities" class="section">
+    <div class="section-header">
+        <h2 class="section-title">Города</h2>
+        <a href="#cities" class="view-all">Все города</a>
+    </div>
+    
+    <div class="cities-grid-5">
+        <div class="city-card">
+            <img src="/static/media/lychini.jpeg" alt="Москва" class="city-img">
+            <div class="city-overlay"></div>
+            <div class="city-info">
+                <div class="city-name">Москва</div>
+                <div class="city-events">Лужники (стадион)</div>
+                <div class="city-events">Вместимость стадиона до 85 000 тыс. зрителей</div>
+            </div>    
+        </div>
+        
+        <div class="city-card">
+            <img src="/static/media/spb.png" alt="Санкт-Петербург" class="city-img">
+            <div class="city-overlay"></div>
+            <div class="city-info">
+                <div class="city-name">Санкт-Петербург</div>
+                <div class="city-events">Ледовый дворец</div>
+                <div class="city-events">Вместимость площадки до 12 300 тыс. зрителей</div>
+            </div>
+        </div>
+        
+        <div class="city-card">
+            <img src="/static/media/ekb.jpg" alt="Екатеринбург" class="city-img">
+            <div class="city-overlay"></div>
+            <div class="city-info">
+                <div class="city-name">Екатеринбург</div>
+                <div class="city-events">Экспоцентр</div>
+                <div class="city-events">Вместимость площадки до 4000 тыс. зрителей</div>
+            </div>
+        </div>
+        
+        <div class="city-card">
+            <img src="/static/media/vtb.jpg" alt="Москва" class="city-img">
+            <div class="city-overlay"></div>
+            <div class="city-info">
+                <div class="city-name">Москва</div>
+                <div class="city-events">ВТБ Арена</div>
+                <div class="city-events">Вместимость площадки до 40000 тыс. зрителей</div>
+            </div>
+        </div>
+        
+        <div class="city-card">
+            <img src="/static/media/livearena.jpg" alt="Москва" class="city-img">
+            <div class="city-overlay"></div>
+            <div class="city-info">
+                <div class="city-name">Москва</div>
+                <div class="city-events">Live Арена</div>
+                <div class="city-events">Вместимость площадки до 12 000 тыс. зрителей</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section ticket-section">
+    <div class="ticket-info">
+        <h1>Как приобрести билет</h1>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">Выберите концерт и место</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">Оплатите онлайн</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">Получите билет на email или прямо на сайте QR-кодом</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-text">Приходите на концерт!</div>
+            </div>
+        </div>
+    </div>
+</section>
 {%endblock%}

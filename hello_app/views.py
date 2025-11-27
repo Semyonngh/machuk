@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Concert, Ticket, TicketOrder
 from django.utils import timezone
+from django.db.models import Q
 
 def concerts_list(request):
     concerts = Concert.objects.all().select_related('artist', 'venue').prefetch_related('ticket_set')
@@ -22,12 +23,10 @@ def buy_ticket(request, concert_id):
         try:
             ticket = Ticket.objects.get(id=ticket_id, concert=concert)
             
-            
             if ticket.quantity < int(request.POST['quantity']):
                 return render(request, 'error.html', {
                     'message': 'Недостаточно билетов в наличии'
                 })
-            
             
             order = TicketOrder(
                 concert=concert,
@@ -39,7 +38,6 @@ def buy_ticket(request, concert_id):
                 quantity=int(request.POST['quantity']),
             )
             order.save()
-            
             
             ticket.quantity -= order.quantity
             ticket.save()
@@ -65,4 +63,19 @@ def tickets(request):
     return render(request, 'tickets.html', {'concerts': concerts})
 
 def index(request):
-    return render(request, 'index.html')
+    search_query = request.GET.get('q', '')
+    
+    if search_query:
+        concerts = Concert.objects.filter(
+            Q(artist__name__icontains=search_query) |
+            Q(venue__city__icontains=search_query) |
+            Q(venue__name__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
+    else:
+        concerts = Concert.objects.all()
+    
+    return render(request, 'index.html', {
+        'concerts': concerts,
+        'search_query': search_query
+    })

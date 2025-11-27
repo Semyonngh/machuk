@@ -10,7 +10,7 @@
         {% for concert in concerts %}
         <div id="{{ concert.artist.name|slugify }}" class="concert-card">
             <div class="concert-image">
-                <img src="{{ concert.artist.image }}" alt="{{ concert.artist.name }}" style="width: 100%; height: 700px; object-fit: cover;">
+                <img src="{{ concert.artist.image }}" alt="{{ concert.artist.name }}">
             </div>
             
             <div class="concert-info">
