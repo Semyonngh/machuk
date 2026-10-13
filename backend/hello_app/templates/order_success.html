@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block main %}
+<div style="text-align: center; padding: 100px 20px;">
+    <h1 style="color: black;">✅ Заказ успешно оформлен!</h1>
+    <p style="font-size: 18px; margin: 20px 0;">
+        Номер вашего заказа: <strong>{{ order.order_number }}</strong>
+    </p>
+    <p style="color: black;">
+        Билеты будут отправлены на email: {{ order.email }}
+    </p>
+    <a href="/" style="
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 30px;
+        background: black;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+    ">Вернуться на главную</a>
+</div>
+{% endblock %}
