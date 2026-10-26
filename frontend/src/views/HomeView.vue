@@ -1,14 +1,54 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useConcertsStore } from '../stores/concerts'
+import { useUserStore } from '../stores/user'
+import api from '../api'
 
+const user = useUserStore()
 const store = useConcertsStore()
 
-onMounted(() => {
+const cities = ref([])
+const genres = ref([])
+const selectedCity = ref('')
+const selectedGenre = ref('')
+
+onMounted(async () => {
     store.fetchConcerts()
     store.fetchArtists()
     store.fetchVenues()
+
+    try {
+        const { data } = await api.getFilters()
+        cities.value = data.cities
+        genres.value = data.genres
+    } catch (e) {
+        console.error(e)
+    }
 })
+
+async function applyFilters() {
+    const params = {}
+    if (selectedCity.value) params.city = selectedCity.value
+    if (selectedGenre.value) params.genre = selectedGenre.value
+
+    try {
+        const { data } = await api.getConcertsFiltered(params)
+        store.concerts = data
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+function getCityImage(venueName) {
+    const map = {
+        'Лужники': '/media/lychini.jpeg',
+        'Ледовый дворец': '/media/spb.png',
+        'Экспоцентр': '/media/ekb.jpg',
+        'ВТБ Арена': '/media/vtb.jpg',
+        'Live Arena': '/media/livearena.jpg',
+    }
+    return map[venueName] || '/media/concert.jpg'
+}
 </script>
 
 <template>
@@ -42,6 +82,18 @@ onMounted(() => {
         <router-link to="/tickets" class="cta-button">Купить билеты</router-link>
     </section>
 
+    <div class="filters">
+        <select v-model="selectedCity" @change="applyFilters" class="filter-select">
+            <option value="">Все города</option>
+            <option v-for="c in cities" :key="c" :value="c">{{ c }}</option>
+        </select>
+
+        <select v-model="selectedGenre" @change="applyFilters" class="filter-select">
+            <option value="">Все жанры</option>
+            <option v-for="g in genres" :key="g" :value="g">{{ g }}</option>
+        </select>
+    </div>
+
     <section id="concerts" class="section">
         <div class="section-header">
             <h2 class="section-title">
@@ -68,6 +120,13 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="concert-right-section">
+                    <button
+                        class="favorite-btn"
+                        @click="user.toggleFavorite(c.id)"
+                        :class="{ active: user.isFavorite(c.id) }"
+                    >
+                        {{ user.isFavorite(c.id) ? '❤️' : '🤍' }}
+                    </button>
                     <div class="concert-price">от {{ c.min_price }} ₽</div>
                     <router-link :to="`/tickets#concert-${c.id}`" class="buy-button">
                         Купить билет
@@ -85,12 +144,17 @@ onMounted(() => {
         <div class="section-header">
             <h2 class="section-title">Популярные артисты</h2>
         </div>
-
-        <div class="grid grid-5">
-            <div v-for="a in store.artists" :key="a.id" class="artist-card">
-                <img :src="a.image" :alt="a.name" class="artist-img">
-                <div class="artist-name">{{ a.name }}</div>
-                <div class="artist-shows">{{ a.description }}</div>
+    
+        <div class="artists-grid">
+            <div v-for="a in store.artists" :key="a.id" class="artist-card-new">
+                <div class="artist-image-wrapper">
+                    <img :src="a.image" :alt="a.name" class="artist-img-new">
+                </div>
+                <div class="artist-content">
+                    <h3 class="artist-name-new">{{ a.name }}</h3>
+                    <p class="artist-genre">{{ a.genre || 'Музыка' }}</p>
+                    <p class="artist-description">{{ a.description }}</p>
+                </div>
             </div>
         </div>
     </section>
@@ -102,6 +166,7 @@ onMounted(() => {
 
         <div class="cities-grid-5">
             <div v-for="v in store.venues" :key="v.id" class="city-card">
+                <img :src="getCityImage(v.name)" :alt="v.city" class="city-img">
                 <div class="city-overlay"></div>
                 <div class="city-info">
                     <div class="city-name">{{ v.city }}</div>

@@ -62,6 +62,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
@@ -391,7 +392,7 @@ body {
     margin: 20px 0;
 }
 
-.contact-form input, 
+.contact-form input,
 .contact-form textarea {
     width: 100%;
     padding: 15px;
@@ -610,4 +611,132 @@ body {
     font-size: 14px;
     margin-bottom: 8px;
     font-style: italic;
+}
+
+.filters {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.filter-select {
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: black;
+}
+
+.artists-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.artist-card-new {
+    width: calc(33.333% - 2rem);
+    min-width: 250px;
+    max-width: 320px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-card-new:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.artist-image-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.artist-img-new {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.artist-card-new:hover .artist-img-new {
+    transform: scale(1.05);
+}
+
+.artist-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-name-new {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0 0 0.5rem 0;
+    color: #000;
+}
+
+.artist-genre {
+    color: #c62828;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 1rem 0;
+}
+
+.artist-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.favorite-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.2);
+}
+
+.favorite-btn.active {
+    animation: pulse 0.4s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.artist-card-filler {
+    display: none;
 }

@@ -14,20 +14,35 @@ class ConcertViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Concert.objects.all().select_related('artist', 'venue').prefetch_related('ticket_set__category_id')
     serializer_class = ConcertSerializer
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        
+        city = self.request.query_params.get('city')
+        if city:
+            queryset = queryset.filter(venue__city__iexact=city)
+        
+        genre = self.request.query_params.get('genre')
+        if genre:
+            queryset = queryset.filter(artist__genre__iexact=genre)
+        
+        max_price = self.request.query_params.get('max_price')
+        if max_price:
+            queryset = queryset.filter(ticket__price__lte=max_price).distinct()
+        
+        q = self.request.query_params.get('q')
+        if q:
+            queryset = queryset.filter(
+                Q(artist__name__icontains=q) |
+                Q(venue__city__icontains=q) |
+                Q(venue__name__icontains=q) |
+                Q(description__icontains=q)
+            )
+        
+        return queryset
+
     @action(detail=False, methods=['get'])
     def search(self, request):
-        query = request.GET.get('q', '')
-        if query:
-            concerts = self.queryset.filter(
-                Q(artist__name__icontains=query) |
-                Q(venue__city__icontains=query) |
-                Q(venue__name__icontains=query) |
-                Q(description__icontains=query)
-            )
-        else:
-            concerts = self.queryset
-        serializer = self.get_serializer(concerts, many=True)
-        return Response(serializer.data)
+        return self.list(request)
 
 
 class ArtistViewSet(viewsets.ReadOnlyModelViewSet):
@@ -43,6 +58,13 @@ class VenueViewSet(viewsets.ReadOnlyModelViewSet):
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+@api_view(['GET'])
+def filter_options(request):
+    cities = sorted(set(Concert.objects.values_list('venue__city', flat=True)))
+    genres = sorted(set(Artist.objects.values_list('genre', flat=True).exclude(genre='')))
+    return Response({'cities': cities, 'genres': genres})
 
 
 @api_view(['POST'])
@@ -87,4 +109,10 @@ def order_detail(request, order_id):
     except TicketOrder.DoesNotExist:
         return Response({'error': 'Заказ не найден'}, status=404)
     serializer = TicketOrderSerializer(order)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def orders_by_email(request, email):
+    orders = TicketOrder.objects.filter(email=email).order_by('-order_date')
+    serializer = TicketOrderSerializer(orders, many=True)
     return Response(serializer.data)

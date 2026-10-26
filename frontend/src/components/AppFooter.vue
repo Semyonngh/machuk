@@ -35,7 +35,7 @@
         </div>
 
         <div class="copyright">
-            <p>SOUNDSTAGE © 2015-2025</p>
+            <p>SOUNDSTAGE © 2015-2026</p>
             <div class="footer-email">concert@soundstage.ru</div>
         </div>
     </footer>

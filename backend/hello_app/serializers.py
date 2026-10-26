@@ -9,9 +9,21 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ArtistSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = Artist
         fields = ['id', 'name', 'description', 'image', 'genre']
+
+    def get_image(self, obj):
+        image_map = {
+            'The Weeknd': '/media/theweeknd.jpg',
+            'Billie Eilish': '/media/billie.jpg',
+            'Lil Uzi Vert': '/media/liluzi.jpg',
+            'Travis Scott': '/media/travis.jpg',
+            'Drake': '/media/drake.jpg',
+        }
+        return image_map.get(obj.name, '/media/concert.jpg')
 
 
 class VenueSerializer(serializers.ModelSerializer):

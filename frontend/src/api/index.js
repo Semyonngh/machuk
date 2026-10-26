@@ -33,4 +33,13 @@ export default {
     getOrder(orderId) {
         return api.get(`orders/${orderId}/`)
     },
+    getFilters() {
+        return api.get('filters/')
+    },
+    getConcertsFiltered(params) {
+        return api.get('concerts/', { params })
+    },
+    getOrdersByEmail(email) {
+        return api.get(`orders/by-email/${email}/`)
+    },
 }

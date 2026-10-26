@@ -1,15 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { useUserStore } from '../stores/user'
 import { useRouter } from 'vue-router'
 
+const user = useUserStore()
 const router = useRouter()
-const selected = ref('')
-
-function goTo(value) {
-    if (!value) return
-    router.push({ path: '/', hash: `#${value}` })
-    selected.value = ''
-}
 </script>
 
 <template>
@@ -22,12 +16,12 @@ function goTo(value) {
         </nav>
 
         <div class="header-actions">
-            <select class="city-select" v-model="selected" @change="goTo(selected)">
-                <option value="">Выберите что нужно</option>
-                <option value="concerts">Концерты</option>
-                <option value="artists">Артисты</option>
-                <option value="cities">Площадки</option>
-            </select>
+            <button v-if="!user.isLoggedIn" @click="router.push('/login')" class="login-button">
+                Войти
+            </button>
+            <button v-else @click="router.push('/profile')" class="login-button">
+                Кабинет
+            </button>
         </div>
     </header>
 </template>
