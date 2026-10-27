@@ -14,4 +14,5 @@ urlpatterns = [
     path('api/concerts/<int:concert_id>/buy/', views.buy_ticket, name='buy_ticket'),
     path('api/orders/<int:order_id>/', views.order_detail, name='order_detail'),
     path('api/orders/by-email/<str:email>/', views.orders_by_email, name='orders_by_email'),
+    path('api/profile/<str:email>/', views.profile_by_email, name='profile_by_email'),
 ]

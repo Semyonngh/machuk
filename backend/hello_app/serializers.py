@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Artist, Venue, Concert, Ticket, TicketOrder
+from .models import Category, Artist, Venue, Concert, Ticket, TicketOrder, UserProfile
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -62,3 +62,8 @@ class TicketOrderSerializer(serializers.ModelSerializer):
         model = TicketOrder
         fields = '__all__'
         read_only_fields = ['order_number', 'order_date', 'total_price']
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['id', 'email', 'name', 'phone', 'favorites']

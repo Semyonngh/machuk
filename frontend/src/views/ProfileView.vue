@@ -3,9 +3,6 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user'
 import api from '../api'
-import { inject } from 'vue'
-const toast = inject('toast')
-toast.value.show('Профиль сохранён!')
 
 const router = useRouter()
 const user = useUserStore()
@@ -21,6 +18,10 @@ onMounted(async () => {
         router.push('/login')
         return
     }
+    await user.loadProfile()
+    name.value = user.name
+    phone.value = user.phone
+
     try {
         const { data } = await api.getOrdersByEmail(user.email)
         orders.value = data
@@ -31,8 +32,8 @@ onMounted(async () => {
     }
 })
 
-function saveProfile() {
-    user.updateProfile(name.value, phone.value)
+async function saveProfile() {
+    await user.updateProfile(name.value, phone.value)
     saved.value = true
     setTimeout(() => (saved.value = false), 2000)
 }

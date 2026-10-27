@@ -42,4 +42,10 @@ export default {
     getOrdersByEmail(email) {
         return api.get(`orders/by-email/${email}/`)
     },
+        getProfile(email) {
+        return api.get(`profile/${email}/`)
+    },
+    updateProfile(email, data) {
+        return api.post(`profile/${email}/`, data)
+    },
 }

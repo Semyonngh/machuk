@@ -7,9 +7,9 @@ const router = useRouter()
 const user = useUserStore()
 const email = ref('')
 
-function submit() {
+async function submit() {
     if (!email.value) return
-    user.login(email.value)
+    await user.login(email.value)
     router.push('/profile')
 }
 </script>

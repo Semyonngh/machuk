@@ -1,19 +1,46 @@
 import { defineStore } from 'pinia'
+import api from '../api'
 
 export const useUserStore = defineStore('user', {
     state: () => ({
         email: localStorage.getItem('userEmail') || '',
-        name: localStorage.getItem('userName') || '',
-        phone: localStorage.getItem('userPhone') || '',
-        favorites: JSON.parse(localStorage.getItem('userFavorites') || '[]'),
+        name: '',
+        phone: '',
+        favorites: [],
     }),
     getters: {
         isLoggedIn: (state) => !!state.email,
     },
     actions: {
-        login(email) {
+        async login(email) {
             this.email = email
             localStorage.setItem('userEmail', email)
+            await this.loadProfile()
+        },
+        async loadProfile() {
+            if (!this.email) return
+            try {
+                const { data } = await api.getProfile(this.email)
+                this.name = data.name || ''
+                this.phone = data.phone || ''
+                this.favorites = data.favorites || []
+            } catch (e) {
+                console.error(e)
+            }
+        },
+        async updateProfile(name, phone) {
+            this.name = name
+            this.phone = phone
+            await api.updateProfile(this.email, { name, phone, favorites: this.favorites })
+        },
+        async toggleFavorite(concertId) {
+            const idx = this.favorites.indexOf(concertId)
+            if (idx === -1) this.favorites.push(concertId)
+            else this.favorites.splice(idx, 1)
+            await api.updateProfile(this.email, { favorites: this.favorites })
+        },
+        isFavorite(concertId) {
+            return this.favorites.includes(concertId)
         },
         logout() {
             this.email = ''
@@ -21,24 +48,6 @@ export const useUserStore = defineStore('user', {
             this.phone = ''
             this.favorites = []
             localStorage.removeItem('userEmail')
-            localStorage.removeItem('userName')
-            localStorage.removeItem('userPhone')
-            localStorage.removeItem('userFavorites')
-        },
-        updateProfile(name, phone) {
-            this.name = name
-            this.phone = phone
-            localStorage.setItem('userName', name)
-            localStorage.setItem('userPhone', phone)
-        },
-        toggleFavorite(concertId) {
-            const idx = this.favorites.indexOf(concertId)
-            if (idx === -1) this.favorites.push(concertId)
-            else this.favorites.splice(idx, 1)
-            localStorage.setItem('userFavorites', JSON.stringify(this.favorites))
-        },
-        isFavorite(concertId) {
-            return this.favorites.includes(concertId)
         },
     },
 })

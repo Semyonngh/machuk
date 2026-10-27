@@ -116,3 +116,22 @@ def orders_by_email(request, email):
     orders = TicketOrder.objects.filter(email=email).order_by('-order_date')
     serializer = TicketOrderSerializer(orders, many=True)
     return Response(serializer.data)
+
+from .serializers import UserProfileSerializer
+from .models import UserProfile
+
+@api_view(['GET', 'POST'])
+def profile_by_email(request, email):
+    profile, created = UserProfile.objects.get_or_create(email=email)
+    
+    if request.method == 'GET':
+        serializer = UserProfileSerializer(profile)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        profile.name = request.data.get('name', profile.name)
+        profile.phone = request.data.get('phone', profile.phone)
+        profile.favorites = request.data.get('favorites', profile.favorites)
+        profile.save()
+        serializer = UserProfileSerializer(profile)
+        return Response(serializer.data)

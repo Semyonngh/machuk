@@ -133,3 +133,17 @@ class TicketOrder(models.Model):
             self.total_price = self.ticket.price * self.quantity
             
         super().save(*args, **kwargs)
+
+class UserProfile(models.Model):
+    email = models.EmailField("Email", unique=True)
+    name = models.CharField("Имя", max_length=100, blank=True)
+    phone = models.CharField("Телефон", max_length=20, blank=True)
+    favorites = models.JSONField("Избранное", default=list, blank=True)
+    created_at = models.DateTimeField("Создан", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Профиль пользователя"
+        verbose_name_plural = "Профили пользователей"
+
+    def __str__(self):
+        return self.email
