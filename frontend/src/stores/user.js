@@ -3,51 +3,59 @@ import api from '../api'
 
 export const useUserStore = defineStore('user', {
     state: () => ({
-        email: localStorage.getItem('userEmail') || '',
-        name: '',
-        phone: '',
-        favorites: [],
+        accessToken: localStorage.getItem('accessToken') || '',
+        refreshToken: localStorage.getItem('refreshToken') || '',
+        profile: null,
     }),
     getters: {
-        isLoggedIn: (state) => !!state.email,
+        isLoggedIn: (state) => !!state.accessToken,
     },
     actions: {
-        async login(email) {
-            this.email = email
-            localStorage.setItem('userEmail', email)
+        async register(data) {
+            await api.register(data)
+        },
+        async login(email, password) {
+            const { data } = await api.login({ username: email, password })
+            this.accessToken = data.access
+            this.refreshToken = data.refresh
+            localStorage.setItem('accessToken', data.access)
+            localStorage.setItem('refreshToken', data.refresh)
             await this.loadProfile()
         },
         async loadProfile() {
-            if (!this.email) return
             try {
-                const { data } = await api.getProfile(this.email)
-                this.name = data.name || ''
-                this.phone = data.phone || ''
-                this.favorites = data.favorites || []
+                const { data } = await api.getProfile()
+                this.profile = data
             } catch (e) {
                 console.error(e)
             }
         },
         async updateProfile(name, phone) {
-            this.name = name
-            this.phone = phone
-            await api.updateProfile(this.email, { name, phone, favorites: this.favorites })
+            const { data } = await api.updateProfile({ name, phone })
+            this.profile = data
         },
         async toggleFavorite(concertId) {
-            const idx = this.favorites.indexOf(concertId)
-            if (idx === -1) this.favorites.push(concertId)
-            else this.favorites.splice(idx, 1)
-            await api.updateProfile(this.email, { favorites: this.favorites })
+            if (!this.profile) return
+            const favorites = [...(this.profile.favorites || [])]
+            const idx = favorites.indexOf(concertId)
+            if (idx === -1) {
+                favorites.push(concertId)
+            } else {
+                favorites.splice(idx, 1)
+            }
+            this.profile.favorites = favorites
+            await api.updateProfile({ favorites })
         },
         isFavorite(concertId) {
-            return this.favorites.includes(concertId)
+            if (!this.profile || !this.profile.favorites) return false
+            return this.profile.favorites.includes(concertId)
         },
         logout() {
-            this.email = ''
-            this.name = ''
-            this.phone = ''
-            this.favorites = []
-            localStorage.removeItem('userEmail')
+            this.accessToken = ''
+            this.refreshToken = ''
+            this.profile = null
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem('refreshToken')
         },
     },
 })

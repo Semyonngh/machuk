@@ -128,9 +128,10 @@ function getCityImage(venueName) {
                         {{ user.isFavorite(c.id) ? '❤️' : '🤍' }}
                     </button>
                     <div class="concert-price">от {{ c.min_price }} ₽</div>
-                    <router-link :to="`/tickets#concert-${c.id}`" class="buy-button">
+                    <router-link :to="`/concert/${c.id}`" class="buy-button">
                         Купить билет
                     </router-link>
+
                 </div>
             </div>
 

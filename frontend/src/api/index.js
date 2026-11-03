@@ -8,6 +8,14 @@ const api = axios.create({
     },
 })
 
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('accessToken')
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+})
+
 export default {
     getConcerts() {
         return api.get('concerts/')
@@ -27,25 +35,31 @@ export default {
     getCategories() {
         return api.get('categories/')
     },
-    buyTicket(concertId, data) {
-        return api.post(`concerts/${concertId}/buy/`, data)
-    },
-    getOrder(orderId) {
-        return api.get(`orders/${orderId}/`)
-    },
     getFilters() {
         return api.get('filters/')
     },
     getConcertsFiltered(params) {
         return api.get('concerts/', { params })
     },
-    getOrdersByEmail(email) {
-        return api.get(`orders/by-email/${email}/`)
+    buyTicket(concertId, data) {
+        return api.post(`concerts/${concertId}/buy/`, data)
     },
-        getProfile(email) {
-        return api.get(`profile/${email}/`)
+    getOrder(orderId) {
+        return api.get(`orders/${orderId}/`)
     },
-    updateProfile(email, data) {
-        return api.post(`profile/${email}/`, data)
+    register(data) {
+        return api.post('register/', data)
+    },
+    login(data) {
+        return api.post('token/', data)
+    },
+    getProfile() {
+        return api.get('profile/')
+    },
+    updateProfile(data) {
+        return api.put('profile/update/', data)
+    },
+    getMyOrders() {
+        return api.get('my-orders/')
     },
 }

@@ -63,7 +63,11 @@ class TicketOrderSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['order_number', 'order_date', 'total_price']
 
+
 class UserProfileSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(source='user.first_name', read_only=True)
+    email = serializers.EmailField(source='user.email', read_only=True)
+
     class Meta:
         model = UserProfile
         fields = ['id', 'email', 'name', 'phone', 'favorites']

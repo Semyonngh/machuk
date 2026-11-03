@@ -1,12 +1,14 @@
 from rest_framework import viewsets
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import api_view, action, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.db.models import Q
+from django.contrib.auth.models import User
 
-from .models import Concert, Artist, Venue, Ticket, TicketOrder, Category
+from .models import Concert, Artist, Venue, Ticket, TicketOrder, Category, UserProfile
 from .serializers import (
     ConcertSerializer, ArtistSerializer, VenueSerializer,
-    TicketSerializer, TicketOrderSerializer, CategorySerializer
+    TicketSerializer, TicketOrderSerializer, CategorySerializer, UserProfileSerializer
 )
 
 
@@ -16,19 +18,19 @@ class ConcertViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        
+
         city = self.request.query_params.get('city')
         if city:
             queryset = queryset.filter(venue__city__iexact=city)
-        
+
         genre = self.request.query_params.get('genre')
         if genre:
             queryset = queryset.filter(artist__genre__iexact=genre)
-        
+
         max_price = self.request.query_params.get('max_price')
         if max_price:
             queryset = queryset.filter(ticket__price__lte=max_price).distinct()
-        
+
         q = self.request.query_params.get('q')
         if q:
             queryset = queryset.filter(
@@ -37,7 +39,7 @@ class ConcertViewSet(viewsets.ReadOnlyModelViewSet):
                 Q(venue__name__icontains=q) |
                 Q(description__icontains=q)
             )
-        
+
         return queryset
 
     @action(detail=False, methods=['get'])
@@ -68,6 +70,58 @@ def filter_options(request):
 
 
 @api_view(['POST'])
+def register(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+    name = request.data.get('name', '')
+
+    if not email or not password:
+        return Response({'error': 'Email и пароль обязательны'}, status=400)
+    if User.objects.filter(email=email).exists():
+        return Response({'error': 'Пользователь с таким email уже существует'}, status=400)
+
+    user = User.objects.create_user(username=email, email=email, password=password)
+    UserProfile.objects.create(user=user, phone=request.data.get('phone', ''))
+    if name:
+        user.first_name = name
+        user.save()
+
+    return Response({'message': 'Пользователь создан'}, status=201)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_profile(request):
+    profile = UserProfile.objects.get(user=request.user)
+    serializer = UserProfileSerializer(profile)
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_profile(request):
+    profile = UserProfile.objects.get(user=request.user)
+    profile.phone = request.data.get('phone', profile.phone)
+    profile.favorites = request.data.get('favorites', profile.favorites)
+    profile.save()
+
+    if 'name' in request.data:
+        request.user.first_name = request.data['name']
+        request.user.save()
+
+    serializer = UserProfileSerializer(profile)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def my_orders(request):
+    orders = TicketOrder.objects.filter(user=request.user).order_by('-order_date')
+    serializer = TicketOrderSerializer(orders, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
 def buy_ticket(request, concert_id):
     try:
         concert = Concert.objects.get(id=concert_id)
@@ -85,9 +139,12 @@ def buy_ticket(request, concert_id):
     if ticket.quantity < quantity:
         return Response({'error': 'Недостаточно билетов'}, status=400)
 
+    user = request.user if request.user.is_authenticated else None
+
     order = TicketOrder.objects.create(
         concert=concert,
         ticket=ticket,
+        user=user,
         customer_name=request.data.get('name'),
         email=request.data.get('email'),
         phone=request.data.get('phone'),
@@ -110,28 +167,3 @@ def order_detail(request, order_id):
         return Response({'error': 'Заказ не найден'}, status=404)
     serializer = TicketOrderSerializer(order)
     return Response(serializer.data)
-
-@api_view(['GET'])
-def orders_by_email(request, email):
-    orders = TicketOrder.objects.filter(email=email).order_by('-order_date')
-    serializer = TicketOrderSerializer(orders, many=True)
-    return Response(serializer.data)
-
-from .serializers import UserProfileSerializer
-from .models import UserProfile
-
-@api_view(['GET', 'POST'])
-def profile_by_email(request, email):
-    profile, created = UserProfile.objects.get_or_create(email=email)
-    
-    if request.method == 'GET':
-        serializer = UserProfileSerializer(profile)
-        return Response(serializer.data)
-    
-    if request.method == 'POST':
-        profile.name = request.data.get('name', profile.name)
-        profile.phone = request.data.get('phone', profile.phone)
-        profile.favorites = request.data.get('favorites', profile.favorites)
-        profile.save()
-        serializer = UserProfileSerializer(profile)
-        return Response(serializer.data)

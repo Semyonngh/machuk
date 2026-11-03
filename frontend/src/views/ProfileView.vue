@@ -9,8 +9,8 @@ const user = useUserStore()
 
 const orders = ref([])
 const loading = ref(true)
-const name = ref(user.name)
-const phone = ref(user.phone)
+const name = ref('')
+const phone = ref('')
 const saved = ref(false)
 
 onMounted(async () => {
@@ -19,11 +19,11 @@ onMounted(async () => {
         return
     }
     await user.loadProfile()
-    name.value = user.name
-    phone.value = user.phone
+    name.value = user.profile?.name || ''
+    phone.value = user.profile?.phone || ''
 
     try {
-        const { data } = await api.getOrdersByEmail(user.email)
+        const { data } = await api.getMyOrders()
         orders.value = data
     } catch (e) {
         console.error(e)
@@ -51,7 +51,7 @@ function logout() {
             <button @click="logout" class="clear-search">Выйти</button>
         </div>
 
-        <p>Email: <strong>{{ user.email }}</strong></p>
+        <p>Email: <strong>{{ user.profile?.email }}</strong></p>
 
         <div class="profile-form">
             <h3>Редактировать профиль</h3>
@@ -70,20 +70,12 @@ function logout() {
             </div>
             <div v-else class="orders-list">
                 <div v-for="o in orders" :key="o.id" class="order-item">
-                    <div>
-                        <strong>Заказ #{{ o.order_number }}</strong>
-                        <p>{{ o.ticket_type }} — {{ o.quantity }} шт.</p>
-                        <p>Сумма: {{ o.total_price }} ₽</p>
-                        <p>Дата: {{ new Date(o.order_date).toLocaleString('ru') }}</p>
-                    </div>
+                    <strong>Заказ #{{ o.order_number }}</strong>
+                    <p>{{ o.ticket_type }} — {{ o.quantity }} шт.</p>
+                    <p>Сумма: {{ o.total_price }} ₽</p>
+                    <p>Дата: {{ new Date(o.order_date).toLocaleString('ru') }}</p>
                 </div>
             </div>
-        </div>
-
-        <div class="orders-section">
-            <h3>Избранные концерты</h3>
-            <p v-if="!user.favorites.length">Пока пусто</p>
-            <p v-else>У вас {{ user.favorites.length }} избранных концертов</p>
         </div>
     </section>
 </template>
