@@ -33,7 +33,6 @@ class TicketAdmin(admin.ModelAdmin):
 
 @admin.register(TicketOrder)
 class TicketOrderAdmin(admin.ModelAdmin):
-    list_display = ['order_number', 'customer_name', 'concert', 'ticket_type', 'quantity', 'total_price', 'order_date']
+    list_display = ['order_number', 'customer_name', 'email', 'concert', 'ticket_type', 'quantity', 'total_price', 'order_date']
     list_filter = ['ticket_type', 'order_date']
-    search_fields = ['customer_name', 'order_number']
-    readonly_fields = ['order_number', 'order_date']
+    search_fields = ['order_number', 'customer_name', 'email']

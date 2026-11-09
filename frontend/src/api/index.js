@@ -8,14 +8,6 @@ const api = axios.create({
     },
 })
 
-api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('accessToken')
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
-})
-
 export default {
     getConcerts() {
         return api.get('concerts/')
@@ -54,12 +46,21 @@ export default {
         return api.post('token/', data)
     },
     getProfile() {
-        return api.get('profile/')
+        const token = localStorage.getItem('accessToken')
+        return api.get('profile/', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
     },
     updateProfile(data) {
-        return api.put('profile/update/', data)
+        const token = localStorage.getItem('accessToken')
+        return api.put('profile/update/', data, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
     },
     getMyOrders() {
-        return api.get('my-orders/')
+        const token = localStorage.getItem('accessToken')
+        return api.get('my-orders/', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
     },
 }

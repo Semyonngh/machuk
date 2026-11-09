@@ -28,18 +28,20 @@ async function submit() {
 </script>
 
 <template>
-    <section class="section" style="max-width: 500px; margin: 100px auto;">
-        <h1 class="section-title">Регистрация</h1>
-        <form @submit.prevent="submit">
-            <input v-model="email" type="email" placeholder="Email" required class="form-input" style="margin-top: 20px;">
-            <input v-model="password" type="password" placeholder="Пароль" required class="form-input" style="margin-top: 10px;">
-            <input v-model="name" placeholder="Имя" class="form-input" style="margin-top: 10px;">
-            <input v-model="phone" placeholder="Телефон" class="form-input" style="margin-top: 10px;">
-            <button type="submit" class="submit-btn" style="margin-top: 15px;">Зарегистрироваться</button>
-            <p v-if="error" style="color: red; margin-top: 10px;">{{ error }}</p>
-            <p style="margin-top: 15px; text-align: center;">
-                Уже есть аккаунт? <router-link to="/login">Войти</router-link>
-            </p>
-        </form>
-    </section>
+    <div>
+        <section class="section" style="max-width: 500px; margin: 100px auto;">
+            <h1 class="section-title">Регистрация</h1>
+            <form @submit.prevent="submit">
+                <input v-model="email" type="email" placeholder="Email" required class="form-input" style="margin-top: 20px;">
+                <input v-model="password" type="password" placeholder="Пароль" required class="form-input" style="margin-top: 10px;">
+                <input v-model="name" placeholder="Имя" class="form-input" style="margin-top: 10px;">
+                <input v-model="phone" placeholder="Телефон" class="form-input" style="margin-top: 10px;">
+                <button type="submit" class="submit-btn" style="margin-top: 15px;">Зарегистрироваться</button>
+                <p v-if="error" style="color: red; margin-top: 10px;">{{ error }}</p>
+                <p style="margin-top: 15px; text-align: center;">
+                    Уже есть аккаунт? <router-link to="/login">Войти</router-link>
+                </p>
+            </form>
+        </section>
+    </div>
 </template>

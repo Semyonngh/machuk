@@ -33,7 +33,7 @@ onMounted(async () => {
 })
 
 async function saveProfile() {
-    await user.updateProfile(name.value, phone.value)
+    await user.updateProfile({ name: name.value, phone: phone.value })
     saved.value = true
     setTimeout(() => (saved.value = false), 2000)
 }
@@ -45,39 +45,41 @@ function logout() {
 </script>
 
 <template>
-    <section class="section">
-        <div class="section-header">
-            <h2 class="section-title">Личный кабинет</h2>
-            <button @click="logout" class="clear-search">Выйти</button>
-        </div>
-
-        <p>Email: <strong>{{ user.profile?.email }}</strong></p>
-
-        <div class="profile-form">
-            <h3>Редактировать профиль</h3>
-            <input v-model="name" placeholder="Имя" class="form-input">
-            <input v-model="phone" placeholder="Телефон" class="form-input">
-            <button @click="saveProfile" class="submit-btn">
-                {{ saved ? 'Сохранено!' : 'Сохранить' }}
-            </button>
-        </div>
-
-        <div class="orders-section">
-            <h3>История заказов</h3>
-            <div v-if="loading">Загрузка...</div>
-            <div v-else-if="!orders.length" class="no-results">
-                <p>У вас пока нет заказов</p>
+    <div>
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Личный кабинет</h2>
+                <button @click="logout" class="clear-search">Выйти</button>
             </div>
-            <div v-else class="orders-list">
-                <div v-for="o in orders" :key="o.id" class="order-item">
-                    <strong>Заказ #{{ o.order_number }}</strong>
-                    <p>{{ o.ticket_type }} — {{ o.quantity }} шт.</p>
-                    <p>Сумма: {{ o.total_price }} ₽</p>
-                    <p>Дата: {{ new Date(o.order_date).toLocaleString('ru') }}</p>
+
+            <p>Email: <strong>{{ user.profile?.email }}</strong></p>
+
+            <div class="profile-form">
+                <h3>Редактировать профиль</h3>
+                <input v-model="name" placeholder="Имя" class="form-input">
+                <input v-model="phone" placeholder="Телефон" class="form-input">
+                <button @click="saveProfile" class="submit-btn">
+                    {{ saved ? 'Сохранено!' : 'Сохранить' }}
+                </button>
+            </div>
+
+            <div class="orders-section">
+                <h3>История заказов</h3>
+                <div v-if="loading">Загрузка...</div>
+                <div v-else-if="!orders.length" class="no-results">
+                    <p>У вас пока нет заказов</p>
+                </div>
+                <div v-else class="orders-list">
+                    <div v-for="o in orders" :key="o.id" class="order-item">
+                        <strong>Заказ #{{ o.order_number }}</strong>
+                        <p>{{ o.ticket_type }} — {{ o.quantity }} шт.</p>
+                        <p>Сумма: {{ o.total_price }} ₽</p>
+                        <p>Дата: {{ new Date(o.order_date).toLocaleString('ru') }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <style scoped>
