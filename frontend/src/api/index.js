@@ -34,7 +34,10 @@ export default {
         return api.get('concerts/', { params })
     },
     buyTicket(concertId, data) {
-        return api.post(`concerts/${concertId}/buy/`, data)
+        const token = localStorage.getItem('accessToken')
+        return api.post(`concerts/${concertId}/buy/`, data, {
+            headers: token ? { Authorization: `Bearer ${token}` } : {}
+        })
     },
     getOrder(orderId) {
         return api.get(`orders/${orderId}/`)
@@ -60,6 +63,18 @@ export default {
     getMyOrders() {
         const token = localStorage.getItem('accessToken')
         return api.get('my-orders/', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+    },
+    getMyTickets() {
+        const token = localStorage.getItem('accessToken')
+        return api.get('my-tickets/', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+    },
+    getMyFavorites() {
+        const token = localStorage.getItem('accessToken')
+        return api.get('my-favorites/', {
             headers: { Authorization: `Bearer ${token}` }
         })
     },

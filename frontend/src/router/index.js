@@ -6,7 +6,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import ConcertView from '../views/ConcertView.vue'
-
+import MyTicketsView from '../views/MyTicketsView.vue'
 
 const routes = [
     { path: '/', name: 'home', component: HomeView },
@@ -16,7 +16,7 @@ const routes = [
     { path: '/register', name: 'register', component: RegisterView },
     { path: '/profile', name: 'profile', component: ProfileView },
     { path: '/concert/:id', name: 'concert', component: ConcertView },
-
+    { path: '/my-tickets', name: 'my-tickets', component: MyTicketsView },
 ]
 
 const router = createRouter({

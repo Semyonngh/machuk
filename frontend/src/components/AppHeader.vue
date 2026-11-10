@@ -13,6 +13,7 @@ const router = useRouter()
         <nav class="nav">
             <router-link to="/">Главная</router-link>
             <router-link to="/tickets">Билеты</router-link>
+            <router-link v-if="user.isLoggedIn" to="/my-tickets">Мои билеты</router-link>
         </nav>
 
         <div class="header-actions">

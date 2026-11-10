@@ -313,20 +313,14 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    position: relative;
-    z-index: 1;
-    transform-origin: center;
-    will-change: transform;
-    backface-visibility: hidden;
 }
 
 .artist-card-new:hover {
-    transform: scale(1.05);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-    z-index: 10;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
 .artist-image-wrapper {
@@ -340,10 +334,6 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
-}
-
-.artist-card-new:hover .artist-img-new {
-    transform: scale(1.1);
 }
 
 .artist-content {
@@ -709,26 +699,38 @@ body {
 .concert-card {
     background: white;
     border-radius: 20px;
-    margin-bottom: 30px;
+    margin: 0 auto 30px;
+    max-width: 800px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    transition: box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .concert-card:hover {
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.tickets-section .container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.concert-image {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+    background: #eee;
 }
 
 .concert-image img {
     width: 100%;
-    height: 400px;
+    height: 500px;
     object-fit: cover;
-    border-radius: 15px;
-    transition: transform 0.5s ease;
-}
-
-.concert-card:hover .concert-image img {
-    transform: scale(1.02);
+    display: block;
 }
 
 .ticket-form {
@@ -745,10 +747,6 @@ body {
     text-align: center;
     margin-bottom: 15px;
     transition: transform 0.3s ease;
-}
-
-.concert-card:hover .price-tag {
-    transform: scale(1.02);
 }
 
 .price-amount {

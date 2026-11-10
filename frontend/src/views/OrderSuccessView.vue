@@ -9,6 +9,15 @@ const toast = inject('toast')
 const order = ref(null)
 const qrDataUrl = ref('')
 
+function formatTicketType(type) {
+    const map = {
+        'dancefloor': 'Танцпол',
+        'fan-zone': 'Фан-зона',
+        'vip': 'VIP'
+    }
+    return map[type] || type
+}
+
 onMounted(async () => {
     const { data } = await api.getOrder(route.params.id)
     order.value = data
@@ -16,7 +25,6 @@ onMounted(async () => {
     const qrText = `Заказ: ${data.order_number}\nEmail: ${data.email}\nСумма: ${data.total_price} ₽`
     qrDataUrl.value = await QRCode.toDataURL(qrText)
 
-    // Уведомление показываем ЗДЕСЬ — после успешной загрузки заказа
     toast.value.show('Спасибо за покупку! 🎉')
 })
 </script>
@@ -28,6 +36,9 @@ onMounted(async () => {
             Номер вашего заказа: <strong>{{ order.order_number }}</strong>
         </p>
         <p>Билеты отправлены на email: {{ order.email }}</p>
+        <p style="margin: 10px 0;">
+            Тип билета: <strong>{{ formatTicketType(order.ticket_type) }}</strong>
+        </p>
 
         <div style="margin: 30px 0;">
             <img :src="qrDataUrl" alt="QR-код заказа" style="max-width: 250px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">

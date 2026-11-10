@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.db.models import Q
 from django.contrib.auth.models import User
+from .serializers import UserProfileSerializer
 
 from .models import Concert, Artist, Venue, Ticket, TicketOrder, Category, UserProfile
 from .serializers import (
@@ -91,9 +92,11 @@ def register(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_profile(request):
+def my_favorites(request):
     profile = UserProfile.objects.get(user=request.user)
-    serializer = UserProfileSerializer(profile)
+    favorite_ids = profile.favorites or []
+    concerts = Concert.objects.filter(id__in=favorite_ids).select_related('artist', 'venue')
+    serializer = ConcertSerializer(concerts, many=True)
     return Response(serializer.data)
 
 
@@ -167,3 +170,22 @@ def order_detail(request, order_id):
         return Response({'error': 'Заказ не найден'}, status=404)
     serializer = TicketOrderSerializer(order)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def my_tickets(request):
+    orders = TicketOrder.objects.filter(user=request.user).select_related(
+        'concert__artist', 'concert__venue', 'ticket'
+    ).order_by('-order_date')
+    serializer = TicketOrderSerializer(orders, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_profile(request):
+    try:
+        profile = UserProfile.objects.get(user=request.user)
+        serializer = UserProfileSerializer(profile)
+        return Response(serializer.data)
+    except UserProfile.DoesNotExist:
+        return Response({'error': 'Профиль не найден'}, status=404)

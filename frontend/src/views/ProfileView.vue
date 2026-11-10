@@ -8,10 +8,20 @@ const router = useRouter()
 const user = useUserStore()
 
 const orders = ref([])
+const favorites = ref([])
 const loading = ref(true)
 const name = ref('')
 const phone = ref('')
 const saved = ref(false)
+
+function formatTicketType(type) {
+    const map = {
+        'dancefloor': 'Танцпол',
+        'fan-zone': 'Фан-зона',
+        'vip': 'VIP'
+    }
+    return map[type] || type
+}
 
 onMounted(async () => {
     if (!user.isLoggedIn) {
@@ -27,9 +37,16 @@ onMounted(async () => {
         orders.value = data
     } catch (e) {
         console.error(e)
-    } finally {
-        loading.value = false
     }
+
+    try {
+        const { data: favData } = await api.getMyFavorites()
+        favorites.value = favData
+    } catch (e) {
+        console.error(e)
+    }
+
+    loading.value = false
 })
 
 async function saveProfile() {
@@ -72,9 +89,27 @@ function logout() {
                 <div v-else class="orders-list">
                     <div v-for="o in orders" :key="o.id" class="order-item">
                         <strong>Заказ #{{ o.order_number }}</strong>
-                        <p>{{ o.ticket_type }} — {{ o.quantity }} шт.</p>
+                        <p>{{ formatTicketType(o.ticket_type) }} — {{ o.quantity }} шт.</p>
                         <p>Сумма: {{ o.total_price }} ₽</p>
                         <p>Дата: {{ new Date(o.order_date).toLocaleString('ru') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="orders-section">
+                <h3>Избранные концерты</h3>
+                <div v-if="!favorites.length" class="no-results">
+                    <p>У вас пока нет избранных концертов</p>
+                </div>
+                <div v-else class="orders-list">
+                    <div v-for="f in favorites" :key="f.id" class="order-item">
+                        <strong>{{ f.artist.name }}</strong>
+                        <p>{{ f.venue.city }}, {{ f.venue.name }}</p>
+                        <p>{{ new Date(f.start_time).toLocaleString('ru') }}</p>
+                        <p>Цена: от {{ f.min_price }} ₽</p>
+                        <router-link :to="`/concert/${f.id}`" class="buy-button" style="margin-top: 10px; display: inline-block;">
+                            Купить билет
+                        </router-link>
                     </div>
                 </div>
             </div>

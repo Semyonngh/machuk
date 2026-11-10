@@ -20,4 +20,7 @@ urlpatterns = [
     path('api/profile/', views.get_profile, name='get_profile'),
     path('api/profile/update/', views.update_profile, name='update_profile'),
     path('api/my-orders/', views.my_orders, name='my_orders'),
+    path('api/my-tickets/', views.my_tickets, name='my_tickets'),
+    path('api/my-favorites/', views.my_favorites, name='my_favorites'),
+
 ]
